@@ -1,0 +1,106 @@
+<html>
+
+<head>
+    <!-- SEMANTIC UI -->
+    <link rel="stylesheet" type="text/css" href="./semantic/dist/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+
+    <style>
+
+        body{
+                background-color:#F1F1F1;    
+            }
+        .dcontent{
+    
+                background-color:#C4D2DA;
+                padding:20px;
+                border-radius: 9px;
+                
+            }
+        </style>
+</head>
+
+<div class=" ui center aligned container">
+
+    <div class="ui segment">
+        <div class="ui form">
+            <div class="two fields">
+                <div class="field">
+                    <input id="input" type="number" placeholder="nº por fila">
+                </div>
+                <div class="field">
+                    <button id="bt_create" class="ui basic button">Test div</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="grid_parent" class="ui grid" style="background-color: #D8DDFF"></div>
+
+</div>
+</div>
+<footer>
+    <script>
+        var map = new Object();
+        map[1] = "one";
+        map[2] = "two";
+        map[3] = "three";
+        map[4] = "four";
+        map[5] = "five";
+        map[6] = "six";
+        map[7] = "seven";
+        map[8] = "eight";
+        map[16] = "sixteen";
+        function get(k) {
+            return map[k];
+        }
+
+        var n_container = 0;
+        $("#bt_create").click(function () {
+
+            //GET NUMBER
+            num_dcontent= $('#input').val();
+            
+            //CALCULATE NUMBER TO PRINT (2 => EIGHT)
+            number = Math.floor(16 / num_dcontent);
+            css_value = get(number);
+
+            //CREATE VAR ROW AND DEFINE LIKE SELECTOR
+            var row = `<div id="row" class="row"></div>`;
+            var content_row = $(row);
+
+            //CREATE VAR CONTAINER
+            var container = `
+                    <div class="`+ css_value + ` wide column ">
+                        <div id="" class="dcontent">
+                             //CODE
+                        </div>
+                    </div>
+                `;
+
+            //CREATE AUX TO CONCATENATE CONTAINERS 
+            var i;
+            var aux;
+            for (i = 1; i <= num_dcontent; i++) {
+                n_container++;
+                aux = content_row.append(container);
+            };
+            $('#grid_parent').append(aux);
+
+        });
+
+        $('#grid_parent').click(function () {
+            alert(document.getElementById("grid_parent").innerHTML)
+        });
+
+            //TODO
+            /*
+            SE REQUIERE QUE EN UNA FILA 'ROJA' SE AÑADAN MAS CASILLAS.
+            SEGUIDAMENTE EN CADA CASILLA OTRO BOTON PARA CAMBIAR EL CSS DE LA CASILLA
+            */
+
+    </script>
+</footer>
+
+</html>
