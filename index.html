@@ -18,12 +18,15 @@
                 border-radius: 9px;
                 
             }
-        </style>
+
+       
+
+    </style>
 </head>
 
 <div class=" ui center aligned container">
 
-    <div class="ui segment">
+    <div class="ui segment" style="margin-bottom: 50px;margin-top: 10px;">
         <div class="ui form">
             <div class="two fields">
                 <div class="field">
@@ -36,11 +39,45 @@
         </div>
     </div>
 
-    <div id="grid_parent" class="ui stackable grid" style=" margin-top:10px;background-color: #D8DDFF"></div>
+    <div id="grid_parent" class="ui grid " style=" background-color: #D8DDFF"></div>
 
+    <!--modal-->
+    <div class="ui longer modal">
+        <div class="content">
+            <div class="ui form">
+                <div class="two fields">
+                    <div class="field">
+                        <label>HTML</label>
+                        <textarea id="modal_input_html" type="text"></textarea>
+                    </div>
+                    <div class="field">
+                        <label>CSS</label>
+                        <textarea id="modal_input_css" type="text"></textarea>
+                    </div>
+                    <div class="field">
+                        <label>CLASS</label>
+                        <textarea id="modal_input_class" type="text"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui red basic cancel inverted button">
+                <i class="remove icon"></i>
+                No
+            </div>
+            <div id="input_yes" class="ui green ok inverted button">
+                <i class="checkmark icon"></i>
+                Yes
+            </div>
+        </div>
+    </div>
 </div>
 </div>
+
 <footer>
+
+    <script src="./semantic/dist/semantic.min.js"></script>
     <script>
         var map = new Object();
         map[1] = "one";
@@ -60,45 +97,58 @@
         $("#bt_create").click(function () {
 
             //GET NUMBER
-            num_dcontent= $('#input').val();
-            
-            //CALCULATE NUMBER TO PRINT (2 => EIGHT)
-            number = Math.floor(16 / num_dcontent);
-            css_value = get(number);
+            num_dcontent = $('#input').val();
+            css_dcontent = get(num_dcontent);
 
             //CREATE VAR ROW AND DEFINE LIKE SELECTOR
-            var row = `<div id="row" class="row"></div>`;
+            var row = `<div id="row" class="` + css_dcontent + ` column row"></div>`;
             var content_row = $(row);
 
-            //CREATE VAR CONTAINER
-            var container = `
-                    <div class="`+ css_value + ` wide column ">
-                        <div id="" class="dcontent">
-                             //CODE
-                        </div>
-                    </div>
-                `;
+            var container_content = `//CODE`;
 
             //CREATE AUX TO CONCATENATE CONTAINERS 
             var i;
             var aux;
             for (i = 1; i <= num_dcontent; i++) {
                 n_container++;
+                var container = `
+                    <div id="column" class="column">
+                        <div id="dcontent" class=" ui segment">` + container_content + `</div>
+                    </div>
+                `;
+
                 aux = content_row.append(container);
             };
+
             $('#grid_parent').append(aux);
-
         });
 
-        $('#grid_parent').click(function () {
-            alert(document.getElementById("grid_parent").innerHTML)
+        $(document).on('click', '#dcontent', function () {
+            container = $(this);
+            $('.ui.longer.modal').modal('show');
+            $('#input_yes').on('click', function () {
+                //CSS
+                var get_css = $('#modal_input_css').val(); 
+                if (get_css != "") {
+                    container.attr('style', get_css);
+                    container.html(get_css);
+                }
+
+                //HTML
+                var get_html = $('#modal_input_html').val();
+                if (get_html != "") {
+                    container.append(get_html);
+                }
+
+                //CLASS
+                var get_class = $('#modal_input_class').val();
+                if (get_class != "") {
+                    container.removeClass().addClass(get_class);
+                }
+            });
         });
 
-            //TODO
-            /*
-            SE REQUIERE QUE EN UNA FILA 'ROJA' SE AÑADAN MAS CASILLAS.
-            SEGUIDAMENTE EN CADA CASILLA OTRO BOTON PARA CAMBIAR EL CSS DE LA CASILLA
-            */
+/*cambiar la clase tambien*/
 
     </script>
 </footer>
