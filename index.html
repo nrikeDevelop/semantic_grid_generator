@@ -5,6 +5,8 @@
     <link rel="stylesheet" type="text/css" href="./semantic/dist/semantic.min.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
         crossorigin="anonymous"></script>
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
     <style>
         body{
                 background-color:#F1F1F1;    
@@ -41,6 +43,20 @@
     <div class="ui longer modal">
         <div class="content">
             <div class="ui form">
+                <label>Elementos comunes</label>
+                <div class="three fields">
+                    <div class="field">
+                        <button class="ui basic button" id="add_card">Añadir Card</button>
+                    </div>
+                    <div class="field">
+                        <button class="ui basic button" id="add_table">Añadir Tabla</button>
+                    </div>
+                    <div class="field">
+                        <button class="ui basic button" id="add_graphic">Añadir Gráfica</button>
+                    </div>
+                </div>
+            </div>
+            <div class="ui form">
                 <div class="two fields">
                     <div class="field">
                         <label>HTML</label>
@@ -56,7 +72,12 @@
                     </div>
                 </div>
             </div>
-        <!--
+            <br>
+            <div class="ui center aligned container">
+                <button id="erase_content" class="fluid negative ui button">Borrar contenido</button>
+            </div>
+            <br>
+            <!--
             <label>Nuevo grid</label>
             <div class="ui form">
                 <div class="three fields">
@@ -84,6 +105,9 @@
             </div>
         </div>
     </div>
+
+    <!--menu-->
+
 </div>
 </div>
 
@@ -91,18 +115,147 @@
 
     <script src="./semantic/dist/semantic.min.js"></script>
     <script>
-        var map = new Object();
-        map[1] = "one";
-        map[2] = "two";
-        map[3] = "three";
-        map[4] = "four";
-        map[5] = "five";
-        map[6] = "six";
-        map[7] = "seven";
-        map[8] = "eight";
-        map[16] = "sixteen";
-        function get(k) {
-            return map[k];
+
+        function random(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        function append_table(selector) {
+            var table = `
+            <table class="ui five column table">
+                <thead>
+                    <tr><th>Name</th>
+                    <th>Status</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Notes</th>
+                </tr></thead>
+                <tbody>
+                    <tr>
+                    <td>John</td>
+                    <td>Approved</td>
+                    <td>22</td>
+                    <td>Male</td>
+                    <td>None</td>
+                    </tr>
+                    <tr>
+                    <td>Jamie</td>
+                    <td>Approved</td>
+                    <td>32</td>
+                    <td>Male</td>
+                    <td>Requires call</td>
+                    </tr>
+                    <tr>
+                    <td>Jill</td>
+                    <td>Denied</td>
+                    <td>22</td>
+                    <td>Female</td>
+                    <td>None</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr><th>3 People</th>
+                    <th>2 Approved</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr></tfoot>
+            </table>`;
+
+            selector.append(table);
+
+        }
+
+        function append_card(selector) {
+            var array_images = new Object();
+            array_images[1] = "https://playjoor.com/assets/avatar/helen.jpg";
+            array_images[2] = "https://playjoor.com/assets/avatar/jenny.jpg";
+            array_images[3] = "https://playjoor.com/assets/avatar/joe.jpg";
+            array_images[4] = "https://playjoor.com/assets/avatar/mark.png";
+            array_images[5] = "https://playjoor.com/assets/avatar/molly.png";
+            array_images[6] = "https://playjoor.com/assets/avatar/nan.jpg";
+            array_images[7] = "https://playjoor.com/assets/avatar/patrick.png";
+            array_images[8] = "https://playjoor.com/assets/avatar/rachel.png";
+            array_images[9] = "https://playjoor.com/assets/avatar/steve.jpg";
+            array_images[10] = "https://playjoor.com/assets/avatar/stevie.jpg";
+
+
+            rnd_image = random(1, 10);
+
+            var card = `
+            <div class="ui card">
+                <div class="image">
+                    <img src="`+ array_images[rnd_image] + `">
+                </div>
+                <div class="content">
+                    <a class="header">Kristy</a>
+                    <div class="meta">
+                    <span class="date">Joined in 2013</span>
+                    </div>
+                    <div class="description">
+                    Kristy is an art director living in New York.
+                    </div>
+                </div>
+                <div class="extra content">
+                    <a>
+                    <i class="user icon"></i>
+                    22 Friends
+                    </a>
+                </div>
+            </div>
+            `;
+
+            selector.append(card);
+        }
+
+        function append_graphic(selector) {
+            var options = {
+                title: {
+                    text: "Desktop OS Market Share in 2017"
+                },
+                subtitles: [{
+                    text: "As of November, 2017"
+                }],
+                animationEnabled: true,
+                data: [{
+                    type: "pie",
+                    startAngle: 40,
+                    toolTipContent: "<b>{label}</b>: {y}%",
+                    showInLegend: "true",
+                    legendText: "{label}",
+                    indexLabelFontSize: 16,
+                    indexLabel: "{label} - {y}%",
+                    dataPoints: [
+                        { y: 48.36, label: "Windows 7" },
+                        { y: 26.85, label: "Windows 10" },
+                        { y: 1.49, label: "Windows 8" },
+                        { y: 6.98, label: "Windows XP" },
+                        { y: 6.53, label: "Windows 8.1" },
+                        { y: 2.45, label: "Linux" },
+                        { y: 3.32, label: "Mac OS X 10.12" },
+                        { y: 4.03, label: "Others" }
+                    ]
+                }]
+            };
+            var graphic = `<div id="chartContainer" style="height: 370px; width: 100%;"></div>`
+            selector.append(graphic);
+            $("#chartContainer").CanvasJSChart(options);
+
+        }
+
+
+        var numbers = new Object();
+        numbers[1] = "one";
+        numbers[2] = "two";
+        numbers[3] = "three";
+        numbers[4] = "four";
+        numbers[5] = "five";
+        numbers[6] = "six";
+        numbers[7] = "seven";
+        numbers[8] = "eight";
+        numbers[16] = "sixteen";
+        function get_number(k) {
+            return numbers[k];
         }
 
         var n_container = 0;
@@ -110,7 +263,7 @@
 
             //GET NUMBER
             num_dcontent = $('#input').val();
-            css_dcontent = get(num_dcontent);
+            css_dcontent = get_number(num_dcontent);
 
             //CREATE VAR ROW AND DEFINE LIKE SELECTOR
             var row = `<div id="row" class="` + css_dcontent + ` column row"></div>`;
@@ -129,7 +282,7 @@
                 n_container++;
                 var container = `
                     <div id="column" class="column">
-                        <div id="dcontent" class="`+ i + ` ui segment">` + container_content + `</div>
+                        <div id="dcontent" class="ui segment">` + container_content + `</div>
                     </div>
                 `;
                 aux = content_row.append(container);
@@ -146,18 +299,36 @@
             $('.ui.longer.modal').modal('show');
         });
 
+        $('#add_card').on('click', function () {
+            append_card(select_container);
+        });
+
+        $('#add_table').on('click', function () {
+            append_table(select_container);
+        });
+
+        $('#add_graphic').on('click', function () {
+            append_graphic(select_container);
+        });
+
+        $('#erase_content').on('click', function () {
+
+            select_container.empty();
+            select_container.removeClass().addClass("ui segment");
+        });
 
         $('#input_yes').on('click', function () {
             //CSS
             var get_css = $('#modal_input_css').val();
             if (get_css != "") {
                 select_container.attr('style', get_css);
-                select_container.html(get_css);
+                //select_container.html(get_css);
             }
 
             //HTML
             var get_html = $('#modal_input_html').val();
             if (get_html != "") {
+                select_container.empty();
                 select_container.append(get_html);
             }
 
