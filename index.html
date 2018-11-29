@@ -5,9 +5,7 @@
     <link rel="stylesheet" type="text/css" href="./semantic/dist/semantic.min.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
         crossorigin="anonymous"></script>
-
     <style>
-
         body{
                 background-color:#F1F1F1;    
             }
@@ -18,10 +16,8 @@
                 border-radius: 9px;
                 
             }
-
-       
-
     </style>
+    <meta charset="UTF-8">
 </head>
 
 <div class=" ui center aligned container">
@@ -33,7 +29,7 @@
                     <input id="input" type="number" placeholder="nº por fila">
                 </div>
                 <div class="field">
-                    <button id="bt_create" class="ui basic button">Test div</button>
+                    <button id="bt_create" class="ui basic button">Crear fila</button>
                 </div>
             </div>
         </div>
@@ -60,6 +56,22 @@
                     </div>
                 </div>
             </div>
+        <!--
+            <label>Nuevo grid</label>
+            <div class="ui form">
+                <div class="three fields">
+                    <div class="field">
+                        <input placeholder="Nº filas" id="fill_rows">
+                    </div>
+                    <div class="field">
+                        <input placeholder="Nº columnas" id="fill_columns">
+                    </div>
+                    <div class="field">
+                        <button id="add_fill_grid" class="ui basic button">Añadir grid</button>
+                    </div>
+                </div>
+            </div>
+        -->
         </div>
         <div class="actions">
             <div class="ui red basic cancel inverted button">
@@ -104,7 +116,11 @@
             var row = `<div id="row" class="` + css_dcontent + ` column row"></div>`;
             var content_row = $(row);
 
-            var container_content = `//CODE`;
+            var container_content = `
+            //CODE
+            <div class="grid_fill">
+            </div>
+            `;
 
             //CREATE AUX TO CONCATENATE CONTAINERS 
             var i;
@@ -113,42 +129,79 @@
                 n_container++;
                 var container = `
                     <div id="column" class="column">
-                        <div id="dcontent" class=" ui segment">` + container_content + `</div>
+                        <div id="dcontent" class="`+ i + ` ui segment">` + container_content + `</div>
                     </div>
                 `;
-
                 aux = content_row.append(container);
             };
 
             $('#grid_parent').append(aux);
         });
 
+        //SELECT DCONTENT
+        //--MODAL
+        var select_container;
         $(document).on('click', '#dcontent', function () {
-            container = $(this);
+            select_container = $(this);
             $('.ui.longer.modal').modal('show');
-            $('#input_yes').on('click', function () {
-                //CSS
-                var get_css = $('#modal_input_css').val(); 
-                if (get_css != "") {
-                    container.attr('style', get_css);
-                    container.html(get_css);
-                }
-
-                //HTML
-                var get_html = $('#modal_input_html').val();
-                if (get_html != "") {
-                    container.append(get_html);
-                }
-
-                //CLASS
-                var get_class = $('#modal_input_class').val();
-                if (get_class != "") {
-                    container.removeClass().addClass(get_class);
-                }
-            });
         });
 
-/*cambiar la clase tambien*/
+
+        $('#input_yes').on('click', function () {
+            //CSS
+            var get_css = $('#modal_input_css').val();
+            if (get_css != "") {
+                select_container.attr('style', get_css);
+                select_container.html(get_css);
+            }
+
+            //HTML
+            var get_html = $('#modal_input_html').val();
+            if (get_html != "") {
+                select_container.append(get_html);
+            }
+
+            //CLASS
+            var get_class = $('#modal_input_class').val();
+            if (get_class != "") {
+                select_container.removeClass().addClass(get_class);
+            }
+        });
+
+
+        /*
+        $('#add_fill_grid').on('click', function () {
+            var fill_columns = $('#fill_columns').val();
+            var fill_rows = $('#fill_rows').val();
+
+            var fill_container_row = `<div id="fill_row" class="` + get(fill_rows) + ` column row">row</div>`;
+            var fill_container_column = `
+                    <div id="column" class="column">
+                        <div id="dcontent" class=" ui segment">CONTENEDOR HIJO</div>
+                    </div>
+                `;
+
+            var fill_add_rows;
+            var fill_add_columns;
+            var aux;
+            var i = 0;
+
+            for (i = 1; i <= fill_rows; i++) {
+                
+                var s = select_container.append(fill_container_row);
+                var ss = $(s);
+                ss.append("<div>content</div>");    
+
+               
+                var j = 0;
+                for (j = 1; j <= fill_columns; j++) {
+    
+                    aux = fill_add_rows.append(fill_container_column);
+                } 
+               
+            }
+        });
+        */
 
     </script>
 </footer>
