@@ -40,7 +40,7 @@
     <div id="grid_parent" class="ui grid " style=" background-color: #D8DDFF"></div>
 
     <!--modal-->
-    <div class="ui longer modal">
+    <div class="ui fullscreen modal">
         <div class="content">
             <div class="ui form">
                 <label>Elementos comunes</label>
@@ -76,6 +76,9 @@
             <div class="ui center aligned container">
                 <button id="erase_content" class="fluid negative ui button">Borrar contenido</button>
             </div>
+            <div class="ui center aligned container">
+                <button id="erase_container" class="fluid negative ui button">Borrar contenedor</button>
+            </div>
             <br>
             <!--
             <label>Nuevo grid</label>
@@ -105,8 +108,6 @@
             </div>
         </div>
     </div>
-
-    <!--menu-->
 
 </div>
 </div>
@@ -263,17 +264,13 @@
 
             //GET NUMBER
             num_dcontent = $('#input').val();
-            css_dcontent = get_number(num_dcontent);
+            css_dcontent = get_number(Math.round(16/num_dcontent));
 
             //CREATE VAR ROW AND DEFINE LIKE SELECTOR
-            var row = `<div id="row" class="` + css_dcontent + ` column row"></div>`;
+            var row = `<div id="row" class="row"></div>`;
             var content_row = $(row);
 
-            var container_content = `
-            //CODE
-            <div class="grid_fill">
-            </div>
-            `;
+            var container_content = `//CODE`;
 
             //CREATE AUX TO CONCATENATE CONTAINERS 
             var i;
@@ -281,10 +278,7 @@
             for (i = 1; i <= num_dcontent; i++) {
                 n_container++;
                 var container = `
-                    <div id="column" class="column">
-                        <div id="dcontent" class="ui segment">` + container_content + `</div>
-                    </div>
-                `;
+                    <div id="column" class="` + css_dcontent + ` wide column "><div id="dcontent" class="ui segment">` + container_content + `</div></div>`;
                 aux = content_row.append(container);
             };
 
@@ -294,28 +288,54 @@
         //SELECT DCONTENT
         //--MODAL
         var select_container;
-        $(document).on('click', '#dcontent', function () {
+        var select_container_html;
+        var select_container_css;
+        var select_container_class;
+        $(document).on('click', '.column', function () {
             select_container = $(this);
-            $('.ui.longer.modal').modal('show');
+            select_container_html = select_container.html();
+            select_container_css = select_container.attr('style');
+            select_container_class = select_container.attr('class');
+            $('#modal_input_html').val(select_container_html);
+            $('#modal_input_css').val(select_container_css);
+            $('#modal_input_class').val(select_container_class);
+
+            $('.ui.fullscreen.modal').modal('show');
+        });
+
+        var selected_row;
+        $(document).on('click', '.row', function () {
+            selected_row = $(this);
         });
 
         $('#add_card').on('click', function () {
             append_card(select_container);
+            $('.ui.fullscreen.modal').modal('hide');
         });
 
         $('#add_table').on('click', function () {
             append_table(select_container);
+            $('.ui.fullscreen.modal').modal('hide');
         });
 
         $('#add_graphic').on('click', function () {
             append_graphic(select_container);
+            $('.ui.fullscreen.modal').modal('hide');
         });
 
         $('#erase_content').on('click', function () {
-
             select_container.empty();
-            select_container.removeClass().addClass("ui segment");
+            //select_container.removeClass().addClass("ui segment");
+            $('.ui.fullscreen.modal').modal('hide');
         });
+
+        $('#erase_container').on('click', function () {
+            select_container.remove();
+            $('.ui.fullscreen.modal').modal('hide');
+
+        });
+
+
 
         $('#input_yes').on('click', function () {
             //CSS
