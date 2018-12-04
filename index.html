@@ -44,7 +44,7 @@
         <div class="content">
             <div class="ui form">
                 <label>Elementos comunes</label>
-                <div class="three fields">
+                <div class="four fields">
                     <div class="field">
                         <button class="ui basic button" id="add_card">Añadir Card</button>
                     </div>
@@ -53,6 +53,9 @@
                     </div>
                     <div class="field">
                         <button class="ui basic button" id="add_graphic">Añadir Gráfica</button>
+                    </div>
+                    <div class="field">
+                        <button class="ui basic button" id="test">Test</button>
                     </div>
                 </div>
             </div>
@@ -80,22 +83,7 @@
                 <button id="erase_container" class="fluid negative ui button">Borrar contenedor</button>
             </div>
             <br>
-            <!--
-            <label>Nuevo grid</label>
-            <div class="ui form">
-                <div class="three fields">
-                    <div class="field">
-                        <input placeholder="Nº filas" id="fill_rows">
-                    </div>
-                    <div class="field">
-                        <input placeholder="Nº columnas" id="fill_columns">
-                    </div>
-                    <div class="field">
-                        <button id="add_fill_grid" class="ui basic button">Añadir grid</button>
-                    </div>
-                </div>
-            </div>
-        -->
+
         </div>
         <div class="actions">
             <div class="ui red basic cancel inverted button">
@@ -114,98 +102,19 @@
 
 <footer>
 
+    <script src="./js/elements.js"></script>
+    <script src="./js/tools.js"></script>
     <script src="./semantic/dist/semantic.min.js"></script>
     <script>
 
-        function random(min, max) {
-            return Math.floor(Math.random() * (max - min + 1) + min);
-        }
-
+        //APPEND ELEMENTS
         function append_table(selector) {
-            var table = `
-            <table class="ui five column table">
-                <thead>
-                    <tr><th>Name</th>
-                    <th>Status</th>
-                    <th>Age</th>
-                    <th>Gender</th>
-                    <th>Notes</th>
-                </tr></thead>
-                <tbody>
-                    <tr>
-                    <td>John</td>
-                    <td>Approved</td>
-                    <td>22</td>
-                    <td>Male</td>
-                    <td>None</td>
-                    </tr>
-                    <tr>
-                    <td>Jamie</td>
-                    <td>Approved</td>
-                    <td>32</td>
-                    <td>Male</td>
-                    <td>Requires call</td>
-                    </tr>
-                    <tr>
-                    <td>Jill</td>
-                    <td>Denied</td>
-                    <td>22</td>
-                    <td>Female</td>
-                    <td>None</td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr><th>3 People</th>
-                    <th>2 Approved</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr></tfoot>
-            </table>`;
-
+            var table = get_table();
             selector.append(table);
-
         }
 
         function append_card(selector) {
-            var array_images = new Object();
-            array_images[1] = "https://playjoor.com/assets/avatar/helen.jpg";
-            array_images[2] = "https://playjoor.com/assets/avatar/jenny.jpg";
-            array_images[3] = "https://playjoor.com/assets/avatar/joe.jpg";
-            array_images[4] = "https://playjoor.com/assets/avatar/mark.png";
-            array_images[5] = "https://playjoor.com/assets/avatar/molly.png";
-            array_images[6] = "https://playjoor.com/assets/avatar/nan.jpg";
-            array_images[7] = "https://playjoor.com/assets/avatar/patrick.png";
-            array_images[8] = "https://playjoor.com/assets/avatar/rachel.png";
-            array_images[9] = "https://playjoor.com/assets/avatar/steve.jpg";
-            array_images[10] = "https://playjoor.com/assets/avatar/stevie.jpg";
-
-
-            rnd_image = random(1, 10);
-
-            var card = `
-            <div class="ui card">
-                <div class="image">
-                    <img src="`+ array_images[rnd_image] + `">
-                </div>
-                <div class="content">
-                    <a class="header">Kristy</a>
-                    <div class="meta">
-                    <span class="date">Joined in 2013</span>
-                    </div>
-                    <div class="description">
-                    Kristy is an art director living in New York.
-                    </div>
-                </div>
-                <div class="extra content">
-                    <a>
-                    <i class="user icon"></i>
-                    22 Friends
-                    </a>
-                </div>
-            </div>
-            `;
-
+            var card = get_card(random(1, 10));
             selector.append(card);
         }
 
@@ -244,27 +153,12 @@
 
         }
 
-
-        var numbers = new Object();
-        numbers[1] = "one";
-        numbers[2] = "two";
-        numbers[3] = "three";
-        numbers[4] = "four";
-        numbers[5] = "five";
-        numbers[6] = "six";
-        numbers[7] = "seven";
-        numbers[8] = "eight";
-        numbers[16] = "sixteen";
-        function get_number(k) {
-            return numbers[k];
-        }
-
         var n_container = 0;
         $("#bt_create").click(function () {
 
             //GET NUMBER
             num_dcontent = $('#input').val();
-            css_dcontent = get_number(Math.round(16/num_dcontent));
+            css_dcontent = get_number(Math.round(16 / num_dcontent));
 
             //CREATE VAR ROW AND DEFINE LIKE SELECTOR
             var row = `<div id="row" class="row"></div>`;
@@ -321,6 +215,10 @@
         $('#add_graphic').on('click', function () {
             append_graphic(select_container);
             $('.ui.fullscreen.modal').modal('hide');
+        });
+
+        $('#test').on('click',function(){
+            var test = select_container.get('');
         });
 
         $('#erase_content').on('click', function () {
