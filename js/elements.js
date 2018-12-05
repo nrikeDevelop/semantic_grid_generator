@@ -58,6 +58,24 @@ function get_secondary_button() {
     return response;
 }
 
+//IMAGES
+function get_small_image(){
+    var response = `
+    <div class="ui small image">
+        <img src="https://semantic-ui.com/images/wireframe/image.png"/>
+    </div>`
+    return response;
+}
+
+function get_medium_image(){
+    var response = `
+    <div class="ui medium image">
+        <img src="https://semantic-ui.com/images/wireframe/image.png"/>
+    </div>`
+    return response;
+}
+
+
 function get_table() {
     var table = `
             <table class="ui five column table">

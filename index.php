@@ -56,9 +56,10 @@
 
 
     <?php
-        $modal_html_menu = array("Segment","Container", "Button", "Table", "Card");
+        $modal_html_menu = array("Segment","Container", "Button", "Image", "Table", "Card");
         $modal_container_menu = array("Left","Right","Center");
-        $modal_button_menu = array("Basic","Primary","Secondary",)
+        $modal_button_menu = array("Basic","Primary","Secondary");
+        $modal_image_menu = array("Small","Medium");
     ?>
     <!--MODAL-->
     <div class="ui fullscreen modal">
@@ -92,6 +93,19 @@
                                                 <div class='menu'>";
                                                     foreach($modal_button_menu as $button){
                                                         echo "<div id='modal_menu_button_$button' class='item'>$button</div>";
+                                                    }                                                 
+                                            echo "
+                                                </div>
+                                            </div>
+                                            ";
+                                            break;
+                                        case 'Image':
+                                            echo "
+                                            <div id='dropdown' class='ui floating dropdown button'>
+                                                <div>Image</div>
+                                                <div class='menu'>";
+                                                    foreach($modal_image_menu as $image){
+                                                        echo "<div id='modal_menu_image_$image' class='item'>$image</div>";
                                                     }                                                 
                                             echo "
                                                 </div>
@@ -214,7 +228,6 @@
             var graphic = `<div id="chartContainer" style="height: 370px; width: 100%;"></div>`
             selector.append(graphic);
             $("#chartContainer").CanvasJSChart(options);
-
         }
 
         var n_container = 0;
@@ -243,7 +256,6 @@
             $('#grid_parent').append(aux);
         });
     
-
         //SELECT DCONTENT
         //--MODAL
         var select_container;
@@ -260,11 +272,7 @@
 
             editor.setValue(select_container_html);
            
-
-
-
             //$('#modal_input_html').val(select_container_html);
-
 
             $('.ui.fullscreen.modal').modal('show');
         });
@@ -323,6 +331,15 @@
 
         $('#modal_menu_button_Secondary').on('click', function () {
             insertTextAtCursor(editor,get_secondary_button());
+        });
+
+        //FUNCTIONS IMAGES
+        $('#modal_menu_image_Small').on('click',function(){
+            insertTextAtCursor(editor,get_small_image());
+        });
+
+        $('#modal_menu_image_Medium').on('click',function(){
+            insertTextAtCursor(editor,get_medium_image());
         });
 
         $('#erase_content').on('click', function () {
