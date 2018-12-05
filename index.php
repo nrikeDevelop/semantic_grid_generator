@@ -255,9 +255,16 @@
             select_container_html = select_container.html();
             select_container_css = select_container.attr('style');
             select_container_class = select_container.attr('class');
-            $('#modal_input_html').val(select_container_html);
             $('#modal_input_css').val(select_container_css);
             $('#modal_input_class').val(select_container_class);
+
+            editor.setValue(select_container_html);
+           
+
+
+
+            //$('#modal_input_html').val(select_container_html);
+
 
             $('.ui.fullscreen.modal').modal('show');
         });
@@ -272,7 +279,11 @@
             cursor_html = $('#modal_input_html').caret('pos');
         });
 
-        //FUNCTIONS
+        //FUNCTIONS MENU
+        $('#modal_menu_Segment').on('click', function () {
+            insertTextAtCursor(editor,get_segment());
+        });
+
         $('#modal_menu_Card').on('click', function () {
             /*append_card(select_container);
             $('#modal_input_html').val(

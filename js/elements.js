@@ -1,3 +1,13 @@
+//SEGMENT
+function get_segment(){
+    var response = `
+    <div class="ui segment">
+        //ELEMENT
+    </div>
+    `;
+    return response;
+}
+
 //CONTAINERS
 function get_left_container() {
     var left_container = `
