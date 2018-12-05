@@ -1,4 +1,33 @@
 
+function get_left_container() {
+    var left_container = `
+    <div class="ui left aligned container">
+        //CODE
+    </div>
+    `;
+}
+
+function get_right_container() {
+    var left_container = `
+    <div class="ui right aligned container">
+        //CODE
+    </div>
+    `;
+}
+
+function get_center_container() {
+    var left_container = `
+    <div class="ui right aligned container">
+        //CODE
+    </div>
+    `;
+}
+
+function get_button() {
+    var left_container = `
+    <button class="ui basic button">Button</button>
+    `;
+}
 
 function get_table() {
     var table = `

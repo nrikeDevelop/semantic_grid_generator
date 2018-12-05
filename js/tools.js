@@ -2,7 +2,6 @@ function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-
 function get_number(k) {
     var numbers = new Object();
     numbers[1] = "one";
@@ -16,3 +15,9 @@ function get_number(k) {
     numbers[16] = "sixteen";
     return numbers[k];
 }
+
+function set_on_position_textarea(text_textarea, position, text_to_add) {
+    var textAreaTxt = text_textarea;
+    return textAreaTxt.substring(0, position) + text_to_add + textAreaTxt.substring(position);
+}
+

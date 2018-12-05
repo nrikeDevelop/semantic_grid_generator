@@ -22,6 +22,13 @@
     <meta charset="UTF-8">
 </head>
 
+<?php
+$modal_html_munu = array("Card",  "Table", "Segment", "world");
+
+?>
+
+
+
 <div class=" ui center aligned container">
 
     <div class="ui segment" style="margin-bottom: 50px;margin-top: 10px;">
@@ -62,16 +69,28 @@
             <div class="ui form">
                 <div class="two fields">
                     <div class="field">
+                    <div class="ui left aligned container">
+                    
+                        <div class="ui buttons">
+                            <?php foreach ($modal_html_munu as $button) {?>                             
+                            <button id="modal_menu_<?php echo $button ?>" class="ui  button"> <?php echo $button?> </button>
+                            <?php } ?> 
+                        </div>          
+                    </div>
+                    </div>
+                    <div class="field">
+                        <label>CLASS</label>
+                        <input id="modal_input_class" type="text">
+                    </div>
+                </div>
+                <div class="two fields">
+                    <div class="field">
                         <label>HTML</label>
                         <textarea id="modal_input_html" type="text"></textarea>
                     </div>
                     <div class="field">
                         <label>CSS</label>
                         <textarea id="modal_input_css" type="text"></textarea>
-                    </div>
-                    <div class="field">
-                        <label>CLASS</label>
-                        <textarea id="modal_input_class" type="text"></textarea>
                     </div>
                 </div>
             </div>
@@ -101,6 +120,8 @@
 </div>
 
 <footer>
+
+    <script src="./js/caret.js"></script>
 
     <script src="./js/elements.js"></script>
     <script src="./js/tools.js"></script>
@@ -202,23 +223,33 @@
             selected_row = $(this);
         });
 
+        var cursor_html;
+        $('#modal_input_html').on('mouseup keydown', function (e) {
+            cursor_html = $('#modal_input_html').caret('pos');
+        });
+
+        //FUNCTIONS
         $('#add_card').on('click', function () {
-            append_card(select_container);
-            $('.ui.fullscreen.modal').modal('hide');
+            //append_card(select_container);
+            $('#modal_input_html').val(
+                set_on_position_textarea(
+                    $('#modal_input_html').val(), 
+                    cursor_html, 
+                    get_card(random(0,10)))
+            );
         });
 
         $('#add_table').on('click', function () {
-            append_table(select_container);
-            $('.ui.fullscreen.modal').modal('hide');
+            //append_table(select_container);
+            $('#modal_input_html').val(
+                set_on_position_textarea(
+                    $('#modal_input_html').val(), 
+                    cursor_html, 
+                    get_table()));
         });
 
         $('#add_graphic').on('click', function () {
-            append_graphic(select_container);
-            $('.ui.fullscreen.modal').modal('hide');
-        });
-
-        $('#test').on('click',function(){
-            var test = select_container.get('');
+            //append_graphic(select_container);
         });
 
         $('#erase_content').on('click', function () {
@@ -232,8 +263,6 @@
             $('.ui.fullscreen.modal').modal('hide');
 
         });
-
-
 
         $('#input_yes').on('click', function () {
             //CSS
@@ -257,40 +286,6 @@
             }
         });
 
-
-        /*
-        $('#add_fill_grid').on('click', function () {
-            var fill_columns = $('#fill_columns').val();
-            var fill_rows = $('#fill_rows').val();
-
-            var fill_container_row = `<div id="fill_row" class="` + get(fill_rows) + ` column row">row</div>`;
-            var fill_container_column = `
-                    <div id="column" class="column">
-                        <div id="dcontent" class=" ui segment">CONTENEDOR HIJO</div>
-                    </div>
-                `;
-
-            var fill_add_rows;
-            var fill_add_columns;
-            var aux;
-            var i = 0;
-
-            for (i = 1; i <= fill_rows; i++) {
-                
-                var s = select_container.append(fill_container_row);
-                var ss = $(s);
-                ss.append("<div>content</div>");    
-
-               
-                var j = 0;
-                for (j = 1; j <= fill_columns; j++) {
-    
-                    aux = fill_add_rows.append(fill_container_column);
-                } 
-               
-            }
-        });
-        */
 
     </script>
 </footer>
