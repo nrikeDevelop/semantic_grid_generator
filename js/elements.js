@@ -1,32 +1,51 @@
-
+//CONTAINERS
 function get_left_container() {
     var left_container = `
     <div class="ui left aligned container">
-        //CODE
+        //ELEMENT
     </div>
     `;
+    return left_container;
 }
 
 function get_right_container() {
-    var left_container = `
+    var right_container = `
     <div class="ui right aligned container">
-        //CODE
+        //ELEMENT
     </div>
     `;
+    return right_container;
 }
 
 function get_center_container() {
-    var left_container = `
-    <div class="ui right aligned container">
-        //CODE
+    var center_container = `
+    <div class="ui center aligned container">
+        //ELEMENT
     </div>
     `;
+    return center_container;
 }
 
-function get_button() {
-    var left_container = `
-    <button class="ui basic button">Button</button>
+//BUTTONS
+function get_basic_button() {
+    var response = `
+    <button href="#" class="ui basic button">Button</button>
     `;
+    return response;
+}
+
+function get_primary_button() {
+    var response = `
+    <button href="#" class="ui primary button">Button</button>
+    `;
+    return response;
+}
+
+function get_secondary_button() {
+    var response = `
+    <button href="#" class="ui secondary button">Button</button>
+    `;
+    return response;
 }
 
 function get_table() {

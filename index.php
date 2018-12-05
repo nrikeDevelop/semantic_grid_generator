@@ -1,12 +1,27 @@
 <html>
 
 <head>
-    <!-- SEMANTIC UI -->
-    <link rel="stylesheet" type="text/css" href="./semantic/dist/semantic.min.css">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-        crossorigin="anonymous"></script>
+        
     <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
     <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+    
+
+    <!-- SEMANTIC UI -->
+    <link rel="stylesheet" type="text/css" href="./semantic/dist/semantic.min.css">
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+    <script src="./semantic/dist/semantic.min.js"></script>
+
+    <link rel="stylesheet"  href="./node_modules/codemirror/lib/codemirror.css">
+    <link rel="stylesheet"  href="./node_modules/codemirror/theme/dracula.css">
+    <script src="./node_modules/codemirror/lib/codemirror.js"></script>
+    <script src="./node_modules/codemirror/lib/codemirror.autoformatter.js"></script>
+    <script src="./node_modules/codemirror/lib/jquery.codemirror.js"></script>
+    <script src="./node_modules/codemirror/mode/xml/xml.js"></script>
+
+
     <style>
         body{
                 background-color:#F1F1F1;    
@@ -21,13 +36,6 @@
     </style>
     <meta charset="UTF-8">
 </head>
-
-<?php
-$modal_html_munu = array("Card",  "Table", "Segment", "world");
-
-?>
-
-
 
 <div class=" ui center aligned container">
 
@@ -46,50 +54,74 @@ $modal_html_munu = array("Card",  "Table", "Segment", "world");
 
     <div id="grid_parent" class="ui grid " style=" background-color: #D8DDFF"></div>
 
-    <!--modal-->
+
+    <?php
+        $modal_html_menu = array("Segment","Container", "Button", "Table", "Card");
+        $modal_container_menu = array("Left","Right","Center");
+        $modal_button_menu = array("Basic","Primary","Secondary",)
+    ?>
+    <!--MODAL-->
     <div class="ui fullscreen modal">
         <div class="content">
             <div class="ui form">
-                <label>Elementos comunes</label>
-                <div class="four fields">
-                    <div class="field">
-                        <button class="ui basic button" id="add_card">Añadir Card</button>
-                    </div>
-                    <div class="field">
-                        <button class="ui basic button" id="add_table">Añadir Tabla</button>
-                    </div>
-                    <div class="field">
-                        <button class="ui basic button" id="add_graphic">Añadir Gráfica</button>
-                    </div>
-                    <div class="field">
-                        <button class="ui basic button" id="test">Test</button>
-                    </div>
-                </div>
-            </div>
-            <div class="ui form">
                 <div class="two fields">
                     <div class="field">
-                    <div class="ui left aligned container">
-                    
-                        <div class="ui buttons">
-                            <?php foreach ($modal_html_munu as $button) {?>                             
-                            <button id="modal_menu_<?php echo $button ?>" class="ui  button"> <?php echo $button?> </button>
-                            <?php } ?> 
-                        </div>          
-                    </div>
+                        <div class="ui label">ELEMENTS</div>
+                        <div class="ui left aligned container">
+                            
+                            <div class="ui buttons">
+                                <?php foreach ($modal_html_menu as $button) {?>
+                                    <?php switch ($button) {
+                                        case 'Container':
+                                            echo "
+                                            <div id='dropdown' class='ui floating dropdown button'>
+                                                <div>Container</div>
+                                                <div class='menu'>";
+                                                    foreach($modal_container_menu as $container){
+                                                        echo "<div id='modal_menu_container_$container' class='item'>$container</div>";
+                                                    }                                                 
+                                            echo "
+                                                </div>
+                                            </div>
+                                            ";
+                                            break;
+                                        case 'Button':
+                                            echo "
+                                            <div id='dropdown' class='ui floating dropdown button'>
+                                                <div>Button</div>
+                                                <div class='menu'>";
+                                                    foreach($modal_button_menu as $button){
+                                                        echo "<div id='modal_menu_button_$button' class='item'>$button</div>";
+                                                    }                                                 
+                                            echo "
+                                                </div>
+                                            </div>
+                                            ";
+                                            break;
+                                        default:
+                                            echo "<div id='modal_menu_$button' class='ui floating button'>
+                                                    $button 
+                                                </div>";
+                                            break;
+                                    }
+                                    ?>
+                                
+                                <?php } ?>                             
+                            </div>
+                        </div>
                     </div>
                     <div class="field">
-                        <label>CLASS</label>
+                        <div class="ui label">CLASS</div>
                         <input id="modal_input_class" type="text">
                     </div>
                 </div>
                 <div class="two fields">
                     <div class="field">
-                        <label>HTML</label>
+                        <div class="ui label">CLASS</div>
                         <textarea id="modal_input_html" type="text"></textarea>
                     </div>
                     <div class="field">
-                        <label>CSS</label>
+                        <div class="ui label">CSS</div>
                         <textarea id="modal_input_css" type="text"></textarea>
                     </div>
                 </div>
@@ -120,13 +152,24 @@ $modal_html_munu = array("Card",  "Table", "Segment", "world");
 </div>
 
 <footer>
-
-    <script src="./js/caret.js"></script>
-
+<script src="./js/caret.js"></script>
     <script src="./js/elements.js"></script>
     <script src="./js/tools.js"></script>
-    <script src="./semantic/dist/semantic.min.js"></script>
     <script>
+        //COMMON 
+
+        editor = $("textarea#modal_input_html").codemirror({
+            mode : "xml",
+            //lineNumbers : true,
+        });
+
+
+        $('.ui.dropdown').dropdown({
+            showOnFocus:false,
+        });
+
+        //END COMMON
+        
 
         //APPEND ELEMENTS
         function append_table(selector) {
@@ -199,6 +242,7 @@ $modal_html_munu = array("Card",  "Table", "Segment", "world");
 
             $('#grid_parent').append(aux);
         });
+    
 
         //SELECT DCONTENT
         //--MODAL
@@ -229,27 +273,45 @@ $modal_html_munu = array("Card",  "Table", "Segment", "world");
         });
 
         //FUNCTIONS
-        $('#add_card').on('click', function () {
-            //append_card(select_container);
+        $('#modal_menu_Card').on('click', function () {
+            /*append_card(select_container);
             $('#modal_input_html').val(
                 set_on_position_textarea(
-                    $('#modal_input_html').val(), 
-                    cursor_html, 
-                    get_card(random(0,10)))
-            );
+                    $('#modal_input_html').val(),
+                    cursor_html,
+                    get_card(random(0, 10)))
+            );*/
+            insertTextAtCursor(editor,get_card(random(0, 10)));
         });
 
-        $('#add_table').on('click', function () {
-            //append_table(select_container);
-            $('#modal_input_html').val(
-                set_on_position_textarea(
-                    $('#modal_input_html').val(), 
-                    cursor_html, 
-                    get_table()));
+        $('#modal_menu_Table').on('click', function () {
+            insertTextAtCursor(editor,get_table());
         });
 
-        $('#add_graphic').on('click', function () {
-            //append_graphic(select_container);
+        //FUNCTIONS CONTAINERS
+        $('#modal_menu_container_Left').on('click', function () {
+            insertTextAtCursor(editor,get_left_container());
+        });
+
+        $('#modal_menu_container_Right').on('click', function () {
+            insertTextAtCursor(editor,get_right_container());
+        });
+
+        $('#modal_menu_container_Center').on('click', function () {
+            insertTextAtCursor(editor,get_center_container());
+        });
+
+        //FUNCTIONS BUTTONS
+        $('#modal_menu_button_Basic').on('click', function () {
+            insertTextAtCursor(editor,get_basic_button());
+        });
+
+        $('#modal_menu_button_Primary').on('click', function () {
+            insertTextAtCursor(editor,get_primary_button());
+        });
+
+        $('#modal_menu_button_Secondary').on('click', function () {
+            insertTextAtCursor(editor,get_secondary_button());
         });
 
         $('#erase_content').on('click', function () {
@@ -273,11 +335,19 @@ $modal_html_munu = array("Card",  "Table", "Segment", "world");
             }
 
             //HTML
+            var get_html = editor.getValue();
+            if(get_html != ""){
+                select_container.empty();
+                select_container.append(get_html);
+            }
+
+            /* LAST METHOD
             var get_html = $('#modal_input_html').val();
             if (get_html != "") {
                 select_container.empty();
                 select_container.append(get_html);
             }
+            */
 
             //CLASS
             var get_class = $('#modal_input_class').val();
@@ -285,7 +355,6 @@ $modal_html_munu = array("Card",  "Table", "Segment", "world");
                 select_container.removeClass().addClass(get_class);
             }
         });
-
 
     </script>
 </footer>
