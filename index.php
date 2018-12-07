@@ -37,40 +37,59 @@
     <meta charset="UTF-8">
 </head>
 
-<div class=" ui center aligned container">
+<?php
+require('./header.php');
+?>
 
     <div class="ui segment" style="margin-bottom: 50px;margin-top: 10px;">
-        <div class="ui form">
-            <div class="two fields">
-                <div class="field">
-                    <input id="input" type="number" placeholder="nº por fila">
+        <div class="ui center aligned container">
+            <div class="ui labeled input">
+                <div class="ui label">
+                    Columns
                 </div>
-                <div class="field">
-                    <button id="bt_create" class="ui basic button">Crear fila</button>
+                <input id="input" type="number" placeholder="nº columns">
+            </div>
+             <button id="bt_create" class="ui basic button">Add row</button>
+        </div>
+        <div class="ui center aligned" style="margin-top: 10px;">
+            <div class="ui center aligned container">
+                <div class="ui labeled input">
+                    <div class="ui label">
+                        Color
+                    </div>
+                    <input id="picker_color" name="jscolor" class="jscolor" value="D8DDFF">
+                </div>
+                <div class="ui toggle checkbox" style="margin-left: 20px;">
+                  <input id="fluid_checkbox" type="checkbox" name="public">
+                  <label>Fluid grid</label>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="grid_parent" class="ui grid " style=" background-color: #D8DDFF"></div>
+    <div id="content_code_download">
+        <div id="container_parent" class="ui container">
+            <div id="grid_parent" class="ui grid " style=" background-color: #D8DDFF; border-radius: 5px;"></div>
+        </div>
+    </div>
 
+    <!--MODAL-->
 
     <?php
-        $modal_html_menu = array("Segment","Container", "Button", "Image", "Table", "Card");
+        $modal_html_menu = array("Segment","Container", "Button", "Image","Grid","Table", "Card");
         $modal_container_menu = array("Left","Right","Center");
         $modal_button_menu = array("Basic","Primary","Secondary");
         $modal_image_menu = array("Small","Medium");
+        $modal_grid_menu = array("2x1","2x2","3x1","3x2");
     ?>
-    <!--MODAL-->
-    <div class="ui fullscreen modal">
+    <div id="edit_modal" class="ui fullscreen modal">
         <div class="content">
             <div class="ui form">
                 <div class="two fields">
                     <div class="field">
                         <div class="ui label">ELEMENTS</div>
                         <div class="ui left aligned container">
-                            
-                            <div class="ui buttons">
+                            <div class="ui segment">
                                 <?php foreach ($modal_html_menu as $button) {?>
                                     <?php switch ($button) {
                                         case 'Container':
@@ -112,6 +131,19 @@
                                             </div>
                                             ";
                                             break;
+                                        case 'Grid':
+                                            echo "
+                                            <div id='dropdown' class='ui floating dropdown button'>
+                                                <div>Grid</div>
+                                                <div class='menu'>";
+                                                    foreach($modal_grid_menu as $grid){
+                                                        echo "<div id='modal_menu_grid_$grid' class='item'>$grid</div>";
+                                                    }                                                 
+                                            echo "
+                                                </div>
+                                            </div>
+                                            ";
+                                            break;
                                         default:
                                             echo "<div id='modal_menu_$button' class='ui floating button'>
                                                     $button 
@@ -131,7 +163,7 @@
                 </div>
                 <div class="two fields">
                     <div class="field">
-                        <div class="ui label">CLASS</div>
+                        <div class="ui label">HTML</div>
                         <textarea id="modal_input_html" type="text"></textarea>
                     </div>
                     <div class="field">
@@ -142,10 +174,9 @@
             </div>
             <br>
             <div class="ui center aligned container">
-                <button id="erase_content" class="fluid negative ui button">Borrar contenido</button>
-            </div>
-            <div class="ui center aligned container">
-                <button id="erase_container" class="fluid negative ui button">Borrar contenedor</button>
+                <button id="erase_content" class=" negative ui button">Drop content</button>
+                <button id="erase_container" class=" negative ui button">Drop container</button>
+                <button id="erase_row" class=" negative ui button">Drop row</button>
             </div>
             <br>
 
@@ -160,15 +191,32 @@
                 Yes
             </div>
         </div>
+        </div>
+
+
+    <!--MODAL DOWNLOAD -->
+    <div id="download_modal" class="ui longer modal">
+        <div class="ui container">
+            <textarea id="modal_download_code"></textarea>
+        </div>
     </div>
 
 </div>
-</div>
 
 <footer>
-<script src="./js/caret.js"></script>
+    <div class="ui right aligned container" style="margin-top:40px;margin-bottom: 30px;">
+        <button id="download" class="ui Secondary button">Download code</button>
+    </div>
+    <script src="./js/caret.js"></script>
     <script src="./js/elements.js"></script>
     <script src="./js/tools.js"></script>
+    <script src="./js/jscolor.js"></script>
+    <script src="./js/createAndSaveZip.js"></script>
+
+
+    <script src="./node_modules/jszip/dist/jszip.min.js"></script>
+    <script src="./node_modules/file-saver/dist/FileSaver.js"></script>
+
     <script>
         //COMMON 
 
@@ -177,12 +225,40 @@
             //lineNumbers : true,
         });
 
+        codeDownload = $("textarea#modal_download_code").codemirror({
+            mode : "xml",
+            //lineNumbers : true,
+        });
 
         $('.ui.dropdown').dropdown({
             showOnFocus:false,
         });
 
+
+
         //END COMMON
+
+        //START PAGE
+        $("#fluid_checkbox").on( 'change', function() { 
+            if( $(this).is(':checked') ) {
+                $("#container_parent").removeClass();
+                $("#container_parent").addClass("ui fluid container");
+
+            } else {
+                $("#container_parent").removeClass();
+                $("#container_parent").addClass("ui container");
+
+            }
+        });
+
+        $("#picker_color").on( 'change', function() { 
+            var color = $("#picker_color").val();
+            $("#grid_parent").css( "background-color", "#"+color);
+
+
+
+            
+        });
         
 
         //APPEND ELEMENTS
@@ -238,7 +314,9 @@
             css_dcontent = get_number(Math.round(16 / num_dcontent));
 
             //CREATE VAR ROW AND DEFINE LIKE SELECTOR
-            var row = `<div id="row" class="row"></div>`;
+            var row = `
+            <div id="row" class="row"></div>
+            `;
             var content_row = $(row);
 
             var container_content = `//CODE`;
@@ -249,7 +327,10 @@
             for (i = 1; i <= num_dcontent; i++) {
                 n_container++;
                 var container = `
-                    <div id="column" class="` + css_dcontent + ` wide column "><div id="dcontent" class="ui segment">` + container_content + `</div></div>`;
+                    <div id="column" class="` + css_dcontent + ` wide column ">
+                        <div id="dcontent" class="ui segment">` + container_content + `</div>
+                    </div>
+                    `;
                 aux = content_row.append(container);
             };
 
@@ -274,7 +355,7 @@
            
             //$('#modal_input_html').val(select_container_html);
 
-            $('.ui.fullscreen.modal').modal('show');
+            $('#edit_modal').modal('show');
         });
 
         var selected_row;
@@ -300,7 +381,7 @@
                     cursor_html,
                     get_card(random(0, 10)))
             );*/
-            insertTextAtCursor(editor,get_card(random(0, 10)));
+            insertTextAtCursor(editor,get_card(random(1, 10)));
         });
 
         $('#modal_menu_Table').on('click', function () {
@@ -342,15 +423,40 @@
             insertTextAtCursor(editor,get_medium_image());
         });
 
+        //FUNCTIONS GRID
+        $('#modal_menu_grid_2x1').on('click',function(){
+            insertTextAtCursor(editor,get_grid_2x1());
+        });
+
+        $('#modal_menu_grid_2x2').on('click',function(){
+            insertTextAtCursor(editor,get_grid_2x2());
+        });
+
+        $('#modal_menu_grid_3x1').on('click',function(){
+            insertTextAtCursor(editor,get_grid_3x1());
+        });
+
+        $('#modal_menu_grid_3x2').on('click',function(){
+            insertTextAtCursor(editor,get_grid_3x2());
+        });
+
+
+        //FUNCTIONS ERASE
         $('#erase_content').on('click', function () {
             select_container.empty();
             //select_container.removeClass().addClass("ui segment");
-            $('.ui.fullscreen.modal').modal('hide');
+            $('#edit_modal').modal('hide');
         });
 
         $('#erase_container').on('click', function () {
             select_container.remove();
-            $('.ui.fullscreen.modal').modal('hide');
+            $('#edit_modal').modal('hide');
+
+        });
+
+        $('#erase_row').on('click', function () {
+            selected_row.remove();
+            $('#edit_modal').modal('hide');
 
         });
 
@@ -382,6 +488,23 @@
             if (get_class != "") {
                 select_container.removeClass().addClass(get_class);
             }
+        });
+
+
+        $('#download').on('click',function(){
+            var code = $('#content_code_download').html();
+            codeDownload.setValue(code);
+            formatTextarea(codeDownload);
+
+            var formatedCode = codeDownload.getValue();
+        createZip(formatedCode);
+
+           //$('#download_modal').modal('show');
+
+//createZip();
+
+
+
         });
 
     </script>

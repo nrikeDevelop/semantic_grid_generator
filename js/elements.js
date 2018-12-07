@@ -1,7 +1,15 @@
+
+//COMON STYLE
+var margin = ""
+var padding = "padding:2px;"
+
+var style = `style="$
+ $padding"`
+
 //SEGMENT
 function get_segment(){
     var response = `
-    <div class="ui segment">
+    <div class="ui segment" >
         //ELEMENT
     </div>
     `;
@@ -11,7 +19,7 @@ function get_segment(){
 //CONTAINERS
 function get_left_container() {
     var left_container = `
-    <div class="ui left aligned container">
+    <div class="ui left aligned container" style="margin:1px;padding:2px;">
         //ELEMENT
     </div>
     `;
@@ -20,7 +28,7 @@ function get_left_container() {
 
 function get_right_container() {
     var right_container = `
-    <div class="ui right aligned container">
+    <div class="ui right aligned container" style="margin:1px;padding:2px;">
         //ELEMENT
     </div>
     `;
@@ -29,7 +37,7 @@ function get_right_container() {
 
 function get_center_container() {
     var center_container = `
-    <div class="ui center aligned container">
+    <div class="ui center aligned container" style="margin:1px;padding:2px;">
         //ELEMENT
     </div>
     `;
@@ -76,45 +84,130 @@ function get_medium_image(){
 }
 
 
+//IMAGE
+function get_grid_2x1(){
+    var response = `
+    <div class="ui stackable grid">
+        <div class = "row">
+            <div class="eight wide column">
+                //ELEMENT
+            </div>
+            <div class="eight wide column">
+                //ELEMENT
+            </div>
+        </div>
+    </div>
+    `
+    return response;
+}
+
+function get_grid_2x2(){
+    var response = `
+    <div class="ui stackable grid">
+        <div class = "row">
+            <div class="eight wide column">
+                //ELEMENT
+            </div>
+            <div class="eight wide column">
+                //ELEMENT
+            </div>
+        </div>
+        <div class = "row">
+            <div class="eight wide column">
+                //ELEMENT
+            </div>
+            <div class="eight wide column">
+                //ELEMENT
+            </div>
+        </div>
+    </div>
+    `
+    return response;
+}
+
+function get_grid_3x1(){
+    var response = `
+    <div class="ui stackable grid">
+        <div class = "row">
+            <div class="five wide column">
+                //ELEMENT
+            </div>
+            <div class="five wide column">
+                //ELEMENT
+            </div>
+            <div class="five wide column">
+                //ELEMENT
+            </div>
+        </div>
+    </div>
+    `
+    return response;
+}
+
+function get_grid_3x2(){
+    var response = `
+    <div class="ui stackable grid">
+        <div class = "row">
+            <div class="five wide column">
+                //ELEMENT
+            </div>
+            <div class="five wide column">
+                //ELEMENT
+            </div>
+            <div class="five wide column">
+                //ELEMENT
+            </div>
+        </div>
+        <div class = "row">
+            <div class="five wide column">
+                //ELEMENT
+            </div>
+            <div class="five wide column">
+                //ELEMENT
+            </div>
+            <div class="five wide column">
+                //ELEMENT
+            </div>
+        </div>
+    </div>
+    `
+    return response;
+}
+
+
 function get_table() {
     var table = `
             <table class="ui five column table">
                 <thead>
-                    <tr><th>Name</th>
+                    <tr>
+                    <th>Name</th>
                     <th>Status</th>
                     <th>Age</th>
-                    <th>Gender</th>
-                    <th>Notes</th>
-                </tr></thead>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                     <td>John</td>
                     <td>Approved</td>
                     <td>22</td>
-                    <td>Male</td>
-                    <td>None</td>
                     </tr>
                     <tr>
                     <td>Jamie</td>
                     <td>Approved</td>
                     <td>32</td>
-                    <td>Male</td>
-                    <td>Requires call</td>
                     </tr>
                     <tr>
                     <td>Jill</td>
                     <td>Denied</td>
                     <td>22</td>
-                    <td>Female</td>
-                    <td>None</td>
                     </tr>
                 </tbody>
                 <tfoot>
-                    <tr><th>3 People</th>
+                    <tr>
+                    <th>3 People</th>
                     <th>2 Approved</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th>
+                    </th>
                 </tr></tfoot>
             </table>`;
 
