@@ -90,8 +90,8 @@ require('./header.php');
                         <div class="ui label">ELEMENTS</div>
                         <div class="ui left aligned container">
                             <div class="ui segment">
-                                <?php foreach ($modal_html_menu as $button) {?>
-                                    <?php switch ($button) {
+                                <?php foreach ($modal_html_menu as $button) {
+                                    switch ($button) {
                                         case 'Container':
                                             echo "
                                             <div id='dropdown' class='ui floating dropdown button'>
@@ -150,9 +150,10 @@ require('./header.php');
                                                 </div>";
                                             break;
                                     }
-                                    ?>
+                                    
                                 
-                                <?php } ?>                             
+                                } 
+                                ?>                             
                             </div>
                         </div>
                     </div>
