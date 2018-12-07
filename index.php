@@ -66,7 +66,7 @@ require('./header.php');
             </div>
         </div>
     </div>
-
+<!--web-->
     <div id="content_code_download">
         <div id="container_parent" class="ui container">
             <div id="grid_parent" class="ui grid " style=" background-color: #D8DDFF; border-radius: 5px;"></div>
