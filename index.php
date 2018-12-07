@@ -82,6 +82,7 @@ require('./header.php');
         $modal_image_menu = array("Small","Medium");
         $modal_grid_menu = array("2x1","2x2","3x1","3x2");
     ?>
+    
     <div id="edit_modal" class="ui fullscreen modal">
         <div class="content">
             <div class="ui form">
@@ -191,14 +192,6 @@ require('./header.php');
                 <i class="checkmark icon"></i>
                 Yes
             </div>
-        </div>
-        </div>
-
-
-    <!--MODAL DOWNLOAD -->
-    <div id="download_modal" class="ui longer modal">
-        <div class="ui container">
-            <textarea id="modal_download_code"></textarea>
         </div>
     </div>
 
