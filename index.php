@@ -487,15 +487,16 @@ require('./header.php');
 
         $('#download').on('click',function(){
             var code = $('#content_code_download').html();
-            codeDownload.setValue(code);
-            formatTextarea(codeDownload);
+            
+            //codeDownload.setValue(code);
+            //formatTextarea(codeDownload);
 
             var formatedCode = codeDownload.getValue();
-        createZip(formatedCode);
+            createZip(formatedCode);
 
            //$('#download_modal').modal('show');
 
-//createZip();
+            //createZip();
 
 
 
