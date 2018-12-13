@@ -1,7 +1,22 @@
         //COMMON 
 
-        editor = $("textarea#modal_input_html").codemirror({
+        window.onscroll = function() {scroll()};
+
+        var header = document.getElementById("top-menu");
+        var sticky = header.offsetTop;
+
+        function scroll() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("sticky");
+        } else {
+            header.classList.remove("sticky");
+        }
+        }
+
+        editor = $("#modal_input_html").codemirror({
+            lineNumbers:true,
             mode : "xml",
+            autofocus: true,
             //lineNumbers : true,
         });
 
@@ -14,7 +29,7 @@
             showOnFocus:false,
         });
 
-
+ 
 
         //END COMMON
 
@@ -33,11 +48,7 @@
 
         $("#picker_color").on( 'change', function() { 
             var color = $("#picker_color").val();
-            $("#grid_parent").css( "background-color", "#"+color);
-
-
-
-            
+            $("#grid_parent").css( "background-color", "#"+color);    
         });
         
 
@@ -95,7 +106,7 @@
 
             //CREATE VAR ROW AND DEFINE LIKE SELECTOR
             var row = `
-            <div id="row" class="row"></div>
+            <div id="row" class="row drop style rowstyle"></div>
             `;
             var content_row = $(row);
 
@@ -107,8 +118,8 @@
             for (i = 1; i <= num_dcontent; i++) {
                 n_container++;
                 var container = `
-                    <div id="column" class="` + css_dcontent + ` wide column ">
-                        <div id="dcontent" class="ui segment">` + container_content + `</div>
+                    <div id="column" class="` + css_dcontent + ` wide column contenteditable">
+                        <div id="dcontent" class="ui segment drop contentstyle">` + container_content + `</div>
                     </div>
                     `;
                 aux = content_row.append(container);
@@ -116,31 +127,45 @@
 
             $('#grid_parent').append(aux);
         });
-    
+
+
         //SELECT DCONTENT
         //--MODAL
         var select_container;
-        var select_container_html;
-        var select_container_css;
         var select_container_class;
         $(document).on('click', '.column', function () {
             select_container = $(this);
-            select_container_html = select_container.html();
-            select_container_css = select_container.attr('style');
             select_container_class = select_container.attr('class');
-            $('#modal_input_css').val(select_container_css);
-            $('#modal_input_class').val(select_container_class);
-
-            editor.setValue(select_container_html);
-           
-            //$('#modal_input_html').val(select_container_html);
-
-            $('#edit_modal').modal('show');
         });
 
         var selected_row;
-        $(document).on('click', '.row', function () {
+        $(document).on('click', '.row', function (e) {
+            e.stopPropagation();
+
             selected_row = $(this);
+
+            select_container = selected_row;
+            
+            editor.setValue($.trim(selected_row.html()));
+
+            ///$('#edit_modal').modal('show');
+            //$( ".toggle-menu" ).slideToggle( "slow" );
+        });
+        
+
+        var selected_dcontent;
+        $(document).on('click', '.contenteditable', function (e) {
+            e.stopPropagation();
+
+                $('#modal_input_class').val(select_container_class);
+
+            selected_dcontent = $(this);
+
+            select_container = selected_dcontent;
+
+            editor.setValue($.trim(selected_dcontent.html()));
+            //$('#edit_modal').modal('show');
+            //$( ".toggle-menu" ).slideToggle( "slow" );
         });
 
         var cursor_html;
@@ -241,6 +266,9 @@
         });
 
         $('#input_yes').on('click', function () {
+
+            $( ".toggle-menu" ).slideToggle( "slow" );
+
             //CSS
             var get_css = $('#modal_input_css').val();
             if (get_css != "") {
@@ -268,6 +296,9 @@
             if (get_class != "") {
                 select_container.removeClass().addClass(get_class);
             }
+
+
+
         });
 
 
@@ -278,10 +309,21 @@
             //formatTextarea(codeDownload);
             //var formatedCode = codeDownload.getValue();
             
-            createZip(code);
+    
+            //GET ALL CONTAINERS AND DROP STYLE
+            var i, $container = $('.drop');
+            for (i=0; i<$container.length; i++)    {
+                $container.eq(i).removeClass('rowstyle contentstyle');  
+            }
+    
+            //createZip(code);
 
-           //$('#download_modal').modal('show');
+    
 
-            //createZip();
+        });
 
+        //EDIT MENU
+
+        $('#edit_button').click(function(){
+            $( ".toggle-menu" ).slideToggle( "slow" );
         });

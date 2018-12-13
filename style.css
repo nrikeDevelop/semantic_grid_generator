@@ -1,0 +1,53 @@
+body{
+    background-color:#F1F1F1;    
+}
+
+.rowstyle{
+    background-color:#E2E8C0;
+    margin:5px;     
+}
+
+.rowstyle:hover{
+    background-color:rgb(171, 177, 136);
+}
+
+.contentstyle{
+    background-color:rgba(171, 177, 136, 0);
+}
+
+.contentstyle:hover{
+    background-color:rgb(175, 175, 175);
+}
+
+.sticky {
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+.top-menu{
+    overflow: hidden;
+    width: 100%;
+    top: 0;
+
+}
+
+.toggle-menu-nav{
+    background-color: #046B7A;
+}
+
+.toggle-menu{
+    position: fixed;
+    top:0;  
+    background-color: rgba(4, 106, 122, 0.842);
+    width: 100%;
+    height: auto;
+}
+
+.editor_area{
+    margin-top:15px;
+    margin-left:300px;
+    margin-right: 300px;
+    margin-bottom: 10px;
+}

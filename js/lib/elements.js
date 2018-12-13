@@ -9,7 +9,7 @@ var style = `style="$
 //SEGMENT
 function get_segment(){
     var response = `
-    <div class="ui segment" >
+    <div class="ui segment drop contentstyle" >
         //ELEMENT
     </div>
     `;
@@ -19,7 +19,7 @@ function get_segment(){
 //CONTAINERS
 function get_left_container() {
     var left_container = `
-    <div class="ui left aligned container" style="margin:1px;padding:2px;">
+    <div class="ui left aligned container drop contentstyle" style="margin:1px;padding:2px;">
         //ELEMENT
     </div>
     `;
@@ -28,7 +28,7 @@ function get_left_container() {
 
 function get_right_container() {
     var right_container = `
-    <div class="ui right aligned container" style="margin:1px;padding:2px;">
+    <div class="ui right aligned container drop contentstyle" style="margin:1px;padding:2px;">
         //ELEMENT
     </div>
     `;
@@ -37,7 +37,7 @@ function get_right_container() {
 
 function get_center_container() {
     var center_container = `
-    <div class="ui center aligned container" style="margin:1px;padding:2px;">
+    <div class="ui center aligned container drop contentstyle" style="margin:1px;padding:2px;">
         //ELEMENT
     </div>
     `;
