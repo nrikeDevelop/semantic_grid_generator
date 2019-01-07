@@ -65,20 +65,9 @@ require('./header.php');
     </div>
 </div>
 
-
-<!--WEB CREATE-->
-
-<div id="content_code_download" style="margin-top:20px; z-index:2">
-    <div id="container_parent" class="ui container">
-        <div id="grid_parent" class="ui grid " style=" background-color: #D8DDFF; border-radius: 5px;"></div>
-    </div>
-</div>
-
-
-
 <div class="toggle-menu" style="display:none">
     <div class="ui center aligned container">
-        <div class="ui center aligned container" style="margin:10px;">
+        <div class="ui center aligned container">
             <?php foreach ($modal_html_menu as $button) {
                                     switch ($button) {
                                         case 'Container':
@@ -142,23 +131,34 @@ require('./header.php');
                                 } 
                                 ?>
         </div>
-        </div>
+    </div>
     <br>
     <div class="ui center aligned container">
-        
-        <div class="ui label">CLASS</div>
-        <input id="modal_input_class" type="text">
+        <div class="ui form">
+            <div class="field">
+                <input id="modal_input_class" type="text" style="width:400px;" placeholder="Class">
+            </div>
         </div>
+    </div>
+
+
     <div class="editor_area">
         <textarea  id="modal_input_html"></textarea>
     </div>
-    <div class="ui right aligned container" style="margin:20px;">
-    <div id="input_yes" class="ui green ok inverted button">
-            <i class="checkmark icon"></i>
-            Yes
-        </div>
+</div>
+
+
+<!--WEB CREATE-->
+
+<div id="content_code_download" style="margin-top:20px; z-index:2">
+    <div id="container_parent" class="ui container">
+        <div id="grid_parent" class="ui grid " style=" background-color: #D8DDFF; border-radius: 5px;"></div>
     </div>
 </div>
+
+
+
+
 <!--MODAL-->
 
 

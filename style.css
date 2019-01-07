@@ -38,8 +38,8 @@ body{
 }
 
 .toggle-menu{
-    position: fixed;
-    top:0;  
+    padding-top: 20px;
+    padding-bottom: 20px;
     background-color: rgba(4, 106, 122, 0.842);
     width: 100%;
     height: auto;

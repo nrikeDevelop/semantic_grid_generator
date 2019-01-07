@@ -1,17 +1,5 @@
         //COMMON 
 
-        window.onscroll = function() {scroll()};
-
-        var header = document.getElementById("top-menu");
-        var sticky = header.offsetTop;
-
-        function scroll() {
-        if (window.pageYOffset > sticky) {
-            header.classList.add("sticky");
-        } else {
-            header.classList.remove("sticky");
-        }
-        }
 
         editor = $("#modal_input_html").codemirror({
             lineNumbers:true,
@@ -29,8 +17,8 @@
             showOnFocus:false,
         });
 
- 
-
+        editor.setValue("");
+        insertTextAtCursor(editor,"SELECT AREA");
         //END COMMON
 
         //START PAGE
@@ -105,8 +93,9 @@
             css_dcontent = get_number(Math.round(16 / num_dcontent));
 
             //CREATE VAR ROW AND DEFINE LIKE SELECTOR
+            //row drop style rowstyle
             var row = `
-            <div id="row" class="row drop style rowstyle"></div>
+            <div id="row" class="row drop style"></div>
             `;
             var content_row = $(row);
 
@@ -130,7 +119,6 @@
 
 
         //SELECT DCONTENT
-        //--MODAL
         var select_container;
         var select_container_class;
         $(document).on('click', '.column', function () {
@@ -138,6 +126,7 @@
             select_container_class = select_container.attr('class');
         });
 
+        /*
         var selected_row;
         $(document).on('click', '.row', function (e) {
             e.stopPropagation();
@@ -151,18 +140,16 @@
             ///$('#edit_modal').modal('show');
             //$( ".toggle-menu" ).slideToggle( "slow" );
         });
-        
+        */
 
         var selected_dcontent;
         $(document).on('click', '.contenteditable', function (e) {
             e.stopPropagation();
 
-                $('#modal_input_class').val(select_container_class);
+            $('#modal_input_class').val(select_container_class);
 
             selected_dcontent = $(this);
-
             select_container = selected_dcontent;
-
             editor.setValue($.trim(selected_dcontent.html()));
             //$('#edit_modal').modal('show');
             //$( ".toggle-menu" ).slideToggle( "slow" );
@@ -265,39 +252,20 @@
 
         });
 
-        $('#input_yes').on('click', function () {
 
-            $( ".toggle-menu" ).slideToggle( "slow" );
-
-            //CSS
-            var get_css = $('#modal_input_css').val();
-            if (get_css != "") {
-                select_container.attr('style', get_css);
-                //select_container.html(get_css);
+        $('#modal_input_class').on('change',function(){
+            var get_class = $('#modal_input_class').val();
+            if (get_class != "") {
+                select_container.removeClass().addClass(get_class);
             }
+        });
 
-            //HTML
+        editor.on('change',function(cMirror){
             var get_html = editor.getValue();
             if(get_html != ""){
                 select_container.empty();
                 select_container.append(get_html);
             }
-
-            /* LAST METHOD
-            var get_html = $('#modal_input_html').val();
-            if (get_html != "") {
-                select_container.empty();
-                select_container.append(get_html);
-            }
-            */
-
-            //CLASS
-            var get_class = $('#modal_input_class').val();
-            if (get_class != "") {
-                select_container.removeClass().addClass(get_class);
-            }
-
-
 
         });
 
@@ -316,7 +284,7 @@
                 $container.eq(i).removeClass('rowstyle contentstyle');  
             }
     
-            //createZip(code);
+            createZip(code);
 
     
 
@@ -326,4 +294,6 @@
 
         $('#edit_button').click(function(){
             $( ".toggle-menu" ).slideToggle( "slow" );
+           
+            
         });
