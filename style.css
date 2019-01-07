@@ -32,6 +32,13 @@ body{
     top: 0;
 
 }
+.top-menu-fixed{
+    z-index: 3;
+    overflow: hidden;
+    width: 100%;
+    top: 0;
+    position: fixed;
+}
 
 .toggle-menu-nav{
     background-color: #046B7A;
@@ -43,6 +50,22 @@ body{
     background-color: rgba(4, 106, 122, 0.842);
     width: 100%;
     height: auto;
+
+}
+
+.toggle-menu-fixed {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgba(4, 106, 122, 0.842);
+    width: 100%;
+    height: auto;
+    bottom: 0;
+    position: fixed;
+    z-index: 3;
+}
+
+.grid-parent{
+    margin-top: 20px;
 }
 
 .editor_area{

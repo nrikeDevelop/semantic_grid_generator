@@ -24,7 +24,6 @@
     <link rel="stylesheet" type="text/css" href="./style.css">
 
 </head>
-
 <?php
 require('./header.php');
 
@@ -58,6 +57,7 @@ require('./header.php');
 
             <button id="download" class="ui inverted button">Download code</button>
 
+
             <button id="edit_button" class=" ui inverted button" style="margin:20px;">
                 <i class="icon settings"></i>Edit
             </button>
@@ -65,7 +65,9 @@ require('./header.php');
     </div>
 </div>
 
-<div class="toggle-menu" style="display:none">
+
+
+<div id="toggle-menu" class="toggle-menu" style="display:none">
     <div class="ui center aligned container">
         <div class="ui center aligned container">
             <?php foreach ($modal_html_menu as $button) {
@@ -150,9 +152,9 @@ require('./header.php');
 
 <!--WEB CREATE-->
 
-<div id="content_code_download" style="margin-top:20px; z-index:2">
+<div id="content_code_download" class="grid-parent">
     <div id="container_parent" class="ui container">
-        <div id="grid_parent" class="ui grid " style=" background-color: #D8DDFF; border-radius: 5px;"></div>
+        <div id="grid_parent" class="ui grid " style="border-radius: 5px;"></div>
     </div>
 </div>
 

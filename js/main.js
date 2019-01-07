@@ -19,6 +19,27 @@
 
         editor.setValue("");
         insertTextAtCursor(editor,"SELECT AREA");
+
+        $active_scroll = false;
+        window.addEventListener("scroll", function (event) {
+            var scroll = this.scrollY;
+            if ( scroll > 283){
+                //menu
+                $('#top-menu').removeClass('top-menu');
+                $('#top-menu').addClass('top-menu-fixed');
+                //toggle -menu
+                //$('#toggle-menu').attr('style', 'display:none;position: fixed;bottom: 0;z-index: 3;');
+                $('#toggle-menu').removeClass('toggle-menu');
+                $('#toggle-menu').addClass('toggle-menu-fixed');
+            }else{
+                $('#top-menu').removeClass('top-menu-fixed');
+                $('#top-menu').addClass('top-menu');
+
+                $('#toggle-menu').removeClass('toggle-menu-fixed');
+                $('#toggle-menu').addClass('toggle-menu');
+            }
+            console.log(scroll)
+        });
         //END COMMON
 
         //START PAGE
@@ -49,40 +70,6 @@
         function append_card(selector) {
             var card = get_card(random(1, 10));
             selector.append(card);
-        }
-
-        function append_graphic(selector) {
-            var options = {
-                title: {
-                    text: "Desktop OS Market Share in 2017"
-                },
-                subtitles: [{
-                    text: "As of November, 2017"
-                }],
-                animationEnabled: true,
-                data: [{
-                    type: "pie",
-                    startAngle: 40,
-                    toolTipContent: "<b>{label}</b>: {y}%",
-                    showInLegend: "true",
-                    legendText: "{label}",
-                    indexLabelFontSize: 16,
-                    indexLabel: "{label} - {y}%",
-                    dataPoints: [
-                        { y: 48.36, label: "Windows 7" },
-                        { y: 26.85, label: "Windows 10" },
-                        { y: 1.49, label: "Windows 8" },
-                        { y: 6.98, label: "Windows XP" },
-                        { y: 6.53, label: "Windows 8.1" },
-                        { y: 2.45, label: "Linux" },
-                        { y: 3.32, label: "Mac OS X 10.12" },
-                        { y: 4.03, label: "Others" }
-                    ]
-                }]
-            };
-            var graphic = `<div id="chartContainer" style="height: 370px; width: 100%;"></div>`
-            selector.append(graphic);
-            $("#chartContainer").CanvasJSChart(options);
         }
 
         var n_container = 0;
@@ -269,7 +256,6 @@
 
         });
 
-
         $('#download').on('click',function(){
             var code = $('#content_code_download').html();
             
@@ -279,11 +265,12 @@
             
     
             //GET ALL CONTAINERS AND DROP STYLE
+            /*
             var i, $container = $('.drop');
             for (i=0; i<$container.length; i++)    {
                 $container.eq(i).removeClass('rowstyle contentstyle');  
             }
-    
+    */
             createZip(code);
 
     
@@ -294,6 +281,4 @@
 
         $('#edit_button').click(function(){
             $( ".toggle-menu" ).slideToggle( "slow" );
-           
-            
         });
