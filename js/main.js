@@ -280,5 +280,5 @@
         //EDIT MENU
 
         $('#edit_button').click(function(){
-            $( ".toggle-menu" ).slideToggle( "slow" );
+            $( "#toggle-menu" ).slideToggle( "slow" );
         });

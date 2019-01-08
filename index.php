@@ -13,6 +13,13 @@
         crossorigin="anonymous"></script>
     <script src="./semantic/dist/semantic.min.js"></script>
 
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+
+    <!-- LIBRARY -->
     <link rel="stylesheet" href="./node_modules/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="./node_modules/codemirror/theme/dracula.css">
     <script src="./node_modules/codemirror/lib/codemirror.js"></script>
@@ -24,15 +31,8 @@
     <link rel="stylesheet" type="text/css" href="./style.css">
 
 </head>
-<?php
-require('./header.php');
+<?php require 'header.php'?>
 
-        $modal_html_menu = array("Segment","Container", "Button", "Image","Grid","Table", "Card");
-        $modal_container_menu = array("Left","Right","Center");
-        $modal_button_menu = array("Basic","Primary","Secondary");
-        $modal_image_menu = array("Small","Medium");
-        $modal_grid_menu = array("2x1","2x2","3x1","3x2");
-?>
 
 <div id="top-menu" class="top-menu">
     <div class="toggle-menu-nav">
@@ -66,8 +66,14 @@ require('./header.php');
 </div>
 
 
-
-<div id="toggle-menu" class="toggle-menu" style="display:none">
+<?php
+        $modal_html_menu = array("Segment","Container", "Button", "Image","Grid","Table", "Card");
+        $modal_container_menu = array("Left","Right","Center");
+        $modal_button_menu = array("Basic","Primary","Secondary");
+        $modal_image_menu = array("Small","Medium");
+        $modal_grid_menu = array("2x1","2x2","3x1","3x2");
+?>
+<div id="toggle-menu" class="toggle-menu" style="display:none" data-aos="fade-up">
     <div class="ui center aligned container">
         <div class="ui center aligned container">
             <?php foreach ($modal_html_menu as $button) {
@@ -297,6 +303,9 @@ require('./header.php');
     <script src="./node_modules/file-saver/dist/FileSaver.js"></script>
 
     <script src="./js/main.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </footer>
 
 </html>
