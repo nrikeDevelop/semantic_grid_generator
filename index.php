@@ -31,7 +31,6 @@
     <link rel="stylesheet" type="text/css" href="./style.css">
 
 </head>
-<?php require 'header.php'?>
 
 
 <div id="top-menu" class="top-menu">
@@ -67,11 +66,12 @@
 
 
 <?php
-        $modal_html_menu = array("Segment","Container", "Button", "Image","Grid","Table", "Card");
+        $modal_html_menu = array("Segment","Container", "Button", "Image","Grid","Table", "Card", "Form");
         $modal_container_menu = array("Left","Right","Center");
         $modal_button_menu = array("Basic","Primary","Secondary");
         $modal_image_menu = array("Small","Medium");
         $modal_grid_menu = array("2x1","2x2","3x1","3x2");
+        $modal_form_menu = array("Form","Input","Checkbox","SimpleForm");
 ?>
 <div id="toggle-menu" class="toggle-menu" style="display:none" data-aos="fade-up">
     <div class="ui center aligned container">
@@ -130,6 +130,19 @@
                                             </div>
                                             ";
                                             break;
+                                        case 'Form':
+                                            echo "
+                                            <div id='dropdown' class='ui inverted floating dropdown button'>
+                                                <div>Form</div>
+                                                <div class='menu'>";
+                                                    foreach($modal_form_menu as $form){
+                                                        echo "<div id='modal_menu_form_$form' class='item'>$form</div>";
+                                                    }                                                 
+                                            echo "
+                                                </div>
+                                            </div>
+                                            ";
+                                            break;
                                         default:
                                             echo "<div id='modal_menu_$button' class='ui inverted floating button'>
                                                     $button 
@@ -148,7 +161,7 @@
             </div>
         </div>
     </div>
-
+<script>       $('.ui.accordion').accordion();</script>
 
     <div class="editor_area">
         <textarea  id="modal_input_html"></textarea>
@@ -160,7 +173,9 @@
 
 <div id="content_code_download" class="grid-parent">
     <div id="container_parent" class="ui container">
+    <div class="parent">
         <div id="grid_parent" class="ui grid " style="border-radius: 5px;"></div>
+    </div>
     </div>
 </div>
 
@@ -303,6 +318,7 @@
     <script src="./node_modules/file-saver/dist/FileSaver.js"></script>
 
     <script src="./js/main.js"></script>
+    
     <script>
         AOS.init();
     </script>

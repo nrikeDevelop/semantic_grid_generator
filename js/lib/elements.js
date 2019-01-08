@@ -84,7 +84,7 @@ function get_medium_image(){
 }
 
 
-//IMAGE
+//GRID
 function get_grid_2x1(){
     var response = `
     <div class="ui stackable grid">
@@ -141,6 +141,103 @@ function get_grid_3x1(){
         </div>
     </div>
     `
+    return response;
+}
+
+//FORM
+function get_add_form(){
+    var response = `
+    <form class="ui form" action="#">
+        <div class="field">
+            <label>Label</label>
+            <input type="text" name="first-name" placeholder="Input placeholder"/>
+        </div>
+        <div class="field">
+            <div class="ui checkbox">
+                <input type="checkbox" tabindex="0" class="hidden"/>
+                <label>I agree to the Terms and Conditions</label>
+            </div>
+        </div>
+        <button class="ui button" type="">Submit</button>
+    </form>
+    `
+    return response;  
+}
+
+function get_add_input(){
+    var response = `
+    <label>Label</label>
+    <input type="text" name="first-name" placeholder="Input placeholder"/>
+    `
+    return response;
+}
+
+function get_add_checkbox(){
+    var response = `
+    <div class="ui checkbox">
+        <input type="checkbox" tabindex="0" class="hidden"/>
+        <label>I agree to the Terms and Conditions</label>
+    </div>
+    `
+    return response;
+}
+
+function get_login_or_button(){
+    var response = `
+    <div class="ui placeholder segment">
+        <div class="ui two column very relaxed stackable grid">
+            <div class="column">
+            <div class="ui form">
+                <div class="field">
+                    <label>Username</label>
+                    <div class="ui left icon input">
+                        <input type="text" placeholder="Username"/>
+                        <i class="user icon"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <div class="ui left icon input">
+                        <input type="password"/>
+                        <i class="lock icon"></i>
+                    </div>
+                </div>
+                <div class="ui blue submit button">Login</div>
+            </div>
+            </div>
+            <div class="middle aligned column">
+                <div class="ui big button">
+                    <i class="signup icon"></i>
+                    Sign Up
+                </div>
+            </div>
+        </div>
+        <div class="ui vertical divider">
+            Or
+        </div>
+    </div>
+    `
+
+    return response;
+}
+
+
+function get_accordion(){
+    var response = `
+    <div class="ui accordion">
+        <div class="title">
+            <i class="dropdown icon"></i>
+            What is a dog?
+        </div>
+        <div class="content">
+            <p class="transition hidden">A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
+        </div>
+    </div>
+
+
+    <script>$('.ui.accordion').accordion();    </script>
+    `; 
+
     return response;
 }
 
@@ -231,7 +328,7 @@ function get_card(rnd_image) {
     var card = `
     <div class="ui card">
         <div class="image">
-            <img src="`+ array_images[rnd_image] + `">
+            <img src="`+ array_images[rnd_image] + `"/>
         </div>
         
         <div class="content">

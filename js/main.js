@@ -8,10 +8,7 @@
             //lineNumbers : true,
         });
 
-        codeDownload = $("textarea#modal_download_code").codemirror({
-            mode : "xml",
-            //lineNumbers : true,
-        });
+
 
         $('.ui.dropdown').dropdown({
             showOnFocus:false,
@@ -20,6 +17,7 @@
         editor.setValue("");
         insertTextAtCursor(editor,"SELECT AREA");
 
+        /*
         $active_scroll = false;
         window.addEventListener("scroll", function (event) {
             var scroll = this.scrollY;
@@ -40,6 +38,11 @@
             }
             console.log(scroll)
         });
+        */
+
+        
+        $('.ui.accordion').accordion();
+
         //END COMMON
 
         //START PAGE
@@ -57,7 +60,7 @@
 
         $("#picker_color").on( 'change', function() { 
             var color = $("#picker_color").val();
-            $("#grid_parent").css( "background-color", "#"+color);    
+            $("body").css( "background-color", "#"+color);    
         });
         
 
@@ -219,6 +222,29 @@
             insertTextAtCursor(editor,get_grid_3x2());
         });
 
+        //FUNCTIONS FORM
+        $('#modal_menu_form_Form').on('click',function(){
+            insertTextAtCursor(editor,get_add_form());
+        });
+        
+        $('#modal_menu_form_Input').on('click',function(){
+            insertTextAtCursor(editor,get_add_input());
+        });
+
+        $('#modal_menu_form_Checkbox').on('click',function(){
+            insertTextAtCursor(editor,get_add_checkbox());
+        });
+
+        $('#modal_menu_form_SimpleForm').on('click',function(){
+            insertTextAtCursor(editor,get_login_or_button());
+        });
+
+
+
+        //FUNCTIONS ACCORDING
+        $('#modal_menu_Accordion').on('click',function(){
+            insertTextAtCursor(editor,get_accordion());
+        });
 
         //FUNCTIONS ERASE
         $('#erase_content').on('click', function () {
@@ -247,12 +273,18 @@
             }
         });
 
+
+        var wto;
         editor.on('change',function(cMirror){
-            var get_html = editor.getValue();
-            if(get_html != ""){
-                select_container.empty();
-                select_container.append(get_html);
-            }
+            clearTimeout(wto);
+            wto = setTimeout(function() {
+                var get_html = editor.getValue();
+                if(get_html != ""){
+                    select_container.empty();
+                    select_container.append(get_html);
+                }
+            }, 100);
+        
 
         });
 
@@ -282,3 +314,6 @@
         $('#edit_button').click(function(){
             $( "#toggle-menu" ).slideToggle( "slow" );
         });
+
+
+

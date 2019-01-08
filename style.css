@@ -27,12 +27,6 @@ body{
   }
 
 .top-menu{
-    overflow: hidden;
-    width: 100%;
-    top: 0;
-
-}
-.top-menu-fixed{
     z-index: 3;
     overflow: hidden;
     width: 100%;
@@ -45,27 +39,24 @@ body{
 }
 
 .toggle-menu{
-    padding-top: 20px;
-    padding-bottom: 20px;
-    background-color: rgba(4, 106, 122, 0.842);
-    width: 100%;
-    height: auto;
 
-}
-
-.toggle-menu-fixed {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    background-color: rgba(4, 106, 122, 0.842);
-    width: 100%;
-    height: auto;
-    bottom: 0;
+    bottom : 0;
     position: fixed;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgba(4, 106, 122, 0.842);
+    width: 100%;
+    height: auto;
     z-index: 3;
 }
 
+.parent{
+    margin-top:20px;
+}
+
 .grid-parent{
-    margin-top: 20px;
+    margin-top: 100px;
+    margin-bottom: 500px;
 }
 
 .editor_area{
