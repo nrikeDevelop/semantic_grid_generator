@@ -17,6 +17,10 @@
         editor.setValue("");
         insertTextAtCursor(editor,"SELECT AREA");
 
+        $('.ui.accordion').accordion();
+
+
+
         /*
         $active_scroll = false;
         window.addEventListener("scroll", function (event) {
@@ -40,8 +44,7 @@
         });
         */
 
-        
-        $('.ui.accordion').accordion();
+    
 
         //END COMMON
 
@@ -85,7 +88,7 @@
             //CREATE VAR ROW AND DEFINE LIKE SELECTOR
             //row drop style rowstyle
             var row = `
-            <div id="row" class="row drop style"></div>
+            <div id="row" class="row drop rowstyle"></div>
             `;
             var content_row = $(row);
 
@@ -109,29 +112,31 @@
 
 
         //SELECT DCONTENT
+    
         var select_container;
         var select_container_class;
         $(document).on('click', '.column', function () {
             select_container = $(this);
             select_container_class = select_container.attr('class');
         });
+        
 
-        /*
+        
         var selected_row;
         $(document).on('click', '.row', function (e) {
-            e.stopPropagation();
 
             selected_row = $(this);
 
             select_container = selected_row;
             
-            editor.setValue($.trim(selected_row.html()));
+           // alert(selected_row);
 
             ///$('#edit_modal').modal('show');
             //$( ".toggle-menu" ).slideToggle( "slow" );
         });
-        */
+        
 
+        
         var selected_dcontent;
         $(document).on('click', '.contenteditable', function (e) {
             e.stopPropagation();
@@ -139,11 +144,19 @@
             $('#modal_input_class').val(select_container_class);
 
             selected_dcontent = $(this);
+            
             select_container = selected_dcontent;
             editor.setValue($.trim(selected_dcontent.html()));
             //$('#edit_modal').modal('show');
             //$( ".toggle-menu" ).slideToggle( "slow" );
         });
+
+
+        $(document).on('click', '.contentstyle', function () {
+            $(this).addClass("tertiary inverted orange segment")
+        });
+
+
 
         var cursor_html;
         $('#modal_input_html').on('mouseup keydown', function (e) {
@@ -284,8 +297,6 @@
                     select_container.append(get_html);
                 }
             }, 100);
-        
-
         });
 
         $('#download').on('click',function(){
@@ -313,7 +324,22 @@
 
         $('#edit_button').click(function(){
             $( "#toggle-menu" ).slideToggle( "slow" );
+
         });
+
+        //CONTEXT_MENU
+        $('#edit_context_menu').click(function(){
+            $( "#toggle-menu" ).slideToggle( "slow" );
+        });
+
+        $('#delete_container_context_menu').click(function(){
+            selected_dcontent.remove();
+        });
+
+        $('#delete_row_context_menu').click(function(){
+            selected_row.remove();
+        });
+
 
 
 

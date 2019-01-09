@@ -11,12 +11,38 @@ body{
     background-color:rgb(171, 177, 136);
 }
 
+.rowstyle{
+    background-color:rgba(171, 177, 136,0);
+}
+
+.rowstyle:hover{
+    border-radius: 5px;
+    background-color:rgba(175, 175, 175, 0.295);
+
+}
+
 .contentstyle{
-    background-color:rgba(171, 177, 136, 0);
+    background-color:rgba(171, 177, 136,0);
 }
 
 .contentstyle:hover{
-    background-color:rgb(175, 175, 175);
+    border-radius: 5px;
+    background-color:rgba(175, 175, 175, 0.582);
+}
+
+.editingstyle{
+    border-radius: 5px;
+    background-color:rgba(167, 136, 71, 0.582);
+}
+
+
+.alert_content{
+    width: 100%;
+    height: 45px;
+    background-color: aquamarine;
+    position: fixed;
+    top: 75;
+    z-index: 3;
 }
 
 .sticky {

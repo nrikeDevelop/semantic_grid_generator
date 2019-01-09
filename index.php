@@ -28,7 +28,9 @@
     <script src="./node_modules/codemirror/mode/xml/xml.js"></script>
 
 
-    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="./style/style.css">
+    <link rel="stylesheet" type="text/css" href="./style/context_menu.css">
+
 
 </head>
 
@@ -75,7 +77,6 @@
 ?>
 <div id="toggle-menu" class="toggle-menu" style="display:none" data-aos="fade-up">
     <div class="ui center aligned container">
-        <div class="ui center aligned container">
             <?php foreach ($modal_html_menu as $button) {
                                     switch ($button) {
                                         case 'Container':
@@ -151,7 +152,6 @@
                                     }                                                              
                                 } 
                                 ?>
-        </div>
     </div>
     <br>
     <div class="ui center aligned container">
@@ -168,6 +168,14 @@
     </div>
 </div>
 
+<!--CONTEXT MENU-->
+<div class="context_menu">
+    <div class="ui vertical menu">
+        <div id="edit_context_menu" class="item"><i class="edit icon"></i> Edit</div>
+        <div id="delete_container_context_menu" class="item"><i class="trash icon"></i>Delete container</div>
+        <div id="delete_row_context_menu" class="item"><i class="trash icon"></i>Delete row</div>
+    </div>
+</div>
 
 <!--WEB CREATE-->
 
@@ -312,7 +320,7 @@
     <script src="./js/lib/tools.js"></script>
     <script src="./js/lib/jscolor.js"></script>
     <script src="./js/lib/createAndSaveZip.js"></script>
-
+    <script src="./js/lib/context_menu.js"></script>
 
     <script src="./node_modules/jszip/dist/jszip.min.js"></script>
     <script src="./node_modules/file-saver/dist/FileSaver.js"></script>
