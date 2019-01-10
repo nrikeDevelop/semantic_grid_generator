@@ -120,19 +120,21 @@
         });
         
         var selected_row;
+        is_selected_row = false;
         $(document).on('click', '.row', function (e) {
             e.stopPropagation();
             selected_row = $(this);
 
             select_container = selected_row;
-            
-           // alert(selected_row);
+            succesAlert('Row','Row selected')
+            is_selected_row = true;
 
             ///$('#edit_modal').modal('show');
             //$( ".toggle-menu" ).slideToggle( "slow" );
         });
         
         var selected_dcontent;
+        is_selected_content = false;
         $(document).on('click', '.contenteditable', function (e) {
             e.stopPropagation();
 
@@ -142,6 +144,10 @@
             
             select_container = selected_dcontent;
             editor.setValue($.trim(selected_dcontent.html()));
+
+            succesAlert('Container','container selected')
+            is_selected_content = true;
+
             //$('#edit_modal').modal('show');
             //$( ".toggle-menu" ).slideToggle( "slow" );
         });
@@ -311,18 +317,12 @@
     */
             createZip(code);
 
-    
-
         });
 
         //EDIT MENU
 
         $('#edit_button').click(function(){
             $( "#toggle-menu" ).slideToggle( "slow" );
-            $.notify("Access granted", "success").options({
-                autoHide:true,
-                autoHideDelay: 1000
-              });
         });
 
         //CONTEXT_MENU
@@ -331,11 +331,29 @@
         });
 
         $('#delete_container_context_menu').click(function(){
-            selected_dcontent.remove();
+            if (is_selected_content){
+
+                selected_dcontent.remove();
+                errorAlert('Delete','Container deleted')
+                
+                is_selected_content=false;
+            }else{
+                warningAlert('Not selected','Container not selected')
+            }
+            
         });
 
         $('#delete_row_context_menu').click(function(){
-            selected_row.remove();
+            if (is_selected_row){
+
+                selected_row.remove();
+                errorAlert('Delete','Row deleted')
+                
+                is_selected_row=false;
+            }else{
+                warningAlert('Not selected','Row not selected')
+            }
+
         });
 
 

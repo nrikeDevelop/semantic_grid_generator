@@ -29,6 +29,7 @@
 
 
     <link rel="stylesheet" type="text/css" href="./style/style.css">
+    <link rel="stylesheet" type="text/css" href="./style/semantic_alert.css">
     <link rel="stylesheet" type="text/css" href="./style/context_menu.css">
 
 
@@ -321,7 +322,9 @@
     <script src="./js/lib/jscolor.js"></script>
     <script src="./js/lib/createAndSaveZip.js"></script>
     <script src="./js/lib/context_menu.js"></script>
-    <script src="./js/lib/notify.min.js"></script>
+    <script src="./js/lib/semantic_alert.js"></script>
+    <script src="./js/lib/notify.style.js"></script>
+
 
 
     <script src="./node_modules/jszip/dist/jszip.min.js"></script>
