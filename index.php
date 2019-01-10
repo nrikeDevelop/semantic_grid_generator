@@ -18,6 +18,10 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 
+    <!--Dragable-->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
     <!-- LIBRARY -->
     <link rel="stylesheet" href="./node_modules/codemirror/lib/codemirror.css">
@@ -35,6 +39,7 @@
 
 </head>
 
+<body>
 
 <div id="top-menu" class="top-menu">
     <div class="toggle-menu-nav">
@@ -183,7 +188,9 @@
 <div id="content_code_download" class="grid-parent">
     <div id="container_parent" class="ui container">
     <div class="parent">
-        <div id="grid_parent" class="ui grid " style="border-radius: 5px;"></div>
+        <div id="grid_parent" class="ui grid " style="border-radius: 5px;">
+        
+        </div>
     </div>
     </div>
 </div>
@@ -313,7 +320,7 @@
 
 -->
 
-
+</body>
 <footer>
 
     <script src="./js/lib/caret.js"></script>
@@ -323,7 +330,7 @@
     <script src="./js/lib/createAndSaveZip.js"></script>
     <script src="./js/lib/context_menu.js"></script>
     <script src="./js/lib/semantic_alert.js"></script>
-    <script src="./js/lib/notify.style.js"></script>
+    <script src="./js/lib/sortable.js"></script>
 
 
 
@@ -334,6 +341,7 @@
     
     <script>
         AOS.init();
+    
     </script>
 </footer>
 

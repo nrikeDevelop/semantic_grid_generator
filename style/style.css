@@ -1,3 +1,26 @@
+/*SORTABLE*/
+
+.slide-placeholder {
+	background: #DADADA;
+	position: relative;
+}
+
+.slide-placeholder{
+    background-color:rgba(4, 106, 122, 0.24);
+    width: 100%;
+    border-radius: 8px;
+}
+
+.slide-placeholder:after {
+	content: " ";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 15px;
+	background-color: #FFF;
+}
+
 
 /*COMON*/
 body{
