@@ -156,6 +156,7 @@
         $(document).on('click', '.contentstyle', function () {
             $(this).addClass("tertiary inverted orange segment")
         });
+        
 */
 
 
