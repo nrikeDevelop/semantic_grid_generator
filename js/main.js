@@ -1,18 +1,20 @@
-        //COMMON 
+//http://www.tutorialspark.com/jqueryUI/jQuery_UI_Sortable_Methods_adding_new_Sortable_refresh.php
+//COMMON 
 
-
+        
         editor = $("#modal_input_html").codemirror({
             lineNumbers:true,
             mode : "xml",
             autofocus: true,
-            //lineNumbers : true,
-        });
+            
+            foldGutter: true,
+            lineWrapping: true,
+            gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
 
+        });
 
         editor.setValue("");
         insertTextAtCursor(editor,"SELECT AREA");
-
-     
         
         //common semantic ui
         $('.ui.accordion').accordion();
@@ -137,8 +139,6 @@
             `;
             var content_row = $(row);
 
-            var container_content = `//CODE`;
-
             //CREATE AUX TO CONCATENATE CONTAINERS 
             var i;
             var aux;
@@ -146,13 +146,14 @@
                 n_container++;
                 var container = `
                     <div id="column" class="` + css_dcontent + ` wide column contenteditable">
-                        <div id="dcontent" class="ui segment drop contentstyle">` + container_content + `</div>
+                        <div id="dcontent" class="ui segment drop contentstyle"> //CODE </div>
                     </div>
                     `;
                 aux = content_row.append(container);
             };
 
             $('#grid_parent').append(aux);
+            
         });
 
         //SELECT DCONTENT
