@@ -12,6 +12,8 @@
         editor.setValue("");
         insertTextAtCursor(editor,"SELECT AREA");
 
+     
+        
         //common semantic ui
         $('.ui.accordion').accordion();
 
