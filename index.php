@@ -6,11 +6,9 @@
     <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
     <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 
-
     <!-- SEMANTIC UI -->
     <link rel="stylesheet" type="text/css" href="./semantic/dist/semantic.min.css">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="./semantic/dist/semantic.min.js"></script>
 
     <!-- AOS -->
@@ -19,8 +17,7 @@
 
 
     <!--Dragable-->
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
 
 
     <!-- LIBRARY -->
@@ -30,7 +27,6 @@
     <script src="./node_modules/codemirror/lib/codemirror.autoformatter.js"></script>
     <script src="./node_modules/codemirror/lib/jquery.codemirror.js"></script>
     <script src="./node_modules/codemirror/mode/xml/xml.js"></script>
-
 
     <link rel="stylesheet" type="text/css" href="./style/style.css">
     <link rel="stylesheet" type="text/css" href="./style/semantic_alert.css">
