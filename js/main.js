@@ -21,9 +21,10 @@ $('.ui.accordion').accordion();
 
 $('.ui.dropdown').dropdown();
 
-//sortable (drag and drop)
 
-$("#grid_parent").sortable({
+
+/*
+$("#grid_parent,.row").sortable({
     placeholder: 'slide-placeholder',
     axis: "y",
     revert: 150,
@@ -59,6 +60,7 @@ $("#grid_parent").sortable({
 
     },
 });
+*/
 /*
        $("#grid_parent").sortable({
    	
@@ -137,27 +139,23 @@ $("#bt_create").click(function () {
     css_dcontent = get_number(Math.round(16 / num_dcontent));
 
     //CREATE VAR ROW AND DEFINE LIKE SELECTOR
+
+    $('#grid_parent').sortable();
+
     //row drop style rowstyle
-    var row = `
-            <div id="row" class="row drop rowstyle"></div>
-            `;
-    var content_row = $(row);
+    var row = $(`<div id="row" class="row drop rowstyle"></div>`);
 
     //CREATE AUX TO CONCATENATE CONTAINERS 
     var i;
-    var aux;
+    var aux = "" ;
     for (i = 1; i <= num_dcontent; i++) {
         n_container++;
-        var container = `
-                    <div id="column" class="` + css_dcontent + ` wide column contenteditable">
-                        <div id="dcontent" class="ui segment drop contentstyle"> //CODE </div>
-                    </div>
-                    `;
-        aux = content_row.append(container);
+        var container = `<div id="column" class="` + css_dcontent + ` wide column contenteditable"><div id="dcontent" class="ui segment drop contentstyle"> //CODE </div></div>`;
+        aux = aux + container;
     };
 
-    $('#grid_parent').append(aux);
-
+    row.append(aux);
+    row.appendTo('#grid_parent').sortable();
 });
 
 //SELECT DCONTENT

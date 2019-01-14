@@ -80,80 +80,80 @@
 <div id="toggle-menu" class="toggle-menu" style="display:none" data-aos="fade-up">
     <div class="ui center aligned container">
             <?php foreach ($modal_html_menu as $button) {
-                                    switch ($button) {
-                                        case 'Container':
-                                            echo "
-                                            <div id='dropdown' class='ui inverted floating dropdown button'>
-                                                <div>Container</div>
-                                                <div class='menu'>";
-                                                    foreach($modal_container_menu as $container){
-                                                        echo "<div id='modal_menu_container_$container' class='item'>$container</div>";
-                                                    }                                                 
-                                            echo "
-                                                </div>
-                                            </div>
-                                            ";
-                                            break;
-                                        case 'Button':
-                                            echo "
-                                            <div id='dropdown' class='ui inverted floating dropdown button'>
-                                                <div>Button</div>
-                                                <div class='menu'>";
-                                                    foreach($modal_button_menu as $button){
-                                                        echo "<div id='modal_menu_button_$button' class='item'>$button</div>";
-                                                    }                                                 
-                                            echo "
-                                                </div>
-                                            </div>
-                                            ";
-                                            break;
-                                        case 'Image':
-                                            echo "
-                                            <div id='dropdown' class='ui inverted floating dropdown button'>
-                                                <div>Image</div>
-                                                <div class='menu'>";
-                                                    foreach($modal_image_menu as $image){
-                                                        echo "<div id='modal_menu_image_$image' class='item'>$image</div>";
-                                                    }                                                 
-                                            echo "
-                                                </div>
-                                            </div>
-                                            ";
-                                            break;
-                                        case 'Grid':
-                                            echo "
-                                            <div id='dropdown' class='ui inverted floating dropdown button'>
-                                                <div>Grid</div>
-                                                <div class='menu'>";
-                                                    foreach($modal_grid_menu as $grid){
-                                                        echo "<div id='modal_menu_grid_$grid' class='item'>$grid</div>";
-                                                    }                                                 
-                                            echo "
-                                                </div>
-                                            </div>
-                                            ";
-                                            break;
-                                        case 'Form':
-                                            echo "
-                                            <div id='dropdown' class='ui inverted floating dropdown button'>
-                                                <div>Form</div>
-                                                <div class='menu'>";
-                                                    foreach($modal_form_menu as $form){
-                                                        echo "<div id='modal_menu_form_$form' class='item'>$form</div>";
-                                                    }                                                 
-                                            echo "
-                                                </div>
-                                            </div>
-                                            ";
-                                            break;
-                                        default:
-                                            echo "<div id='modal_menu_$button' class='ui inverted floating button'>
-                                                    $button 
-                                                </div>";
-                                            break;
-                                    }                                                              
-                                } 
-                                ?>
+                switch ($button) {
+                    case 'Container':
+                        echo "
+                        <div id='dropdown' class='ui inverted floating dropdown button'>
+                            <div>Container</div>
+                            <div class='menu'>";
+                                foreach($modal_container_menu as $container){
+                                    echo "<div id='modal_menu_container_$container' class='item'>$container</div>";
+                                }                                                 
+                        echo "
+                            </div>
+                        </div>
+                        ";
+                        break;
+                    case 'Button':
+                        echo "
+                        <div id='dropdown' class='ui inverted floating dropdown button'>
+                            <div>Button</div>
+                            <div class='menu'>";
+                                foreach($modal_button_menu as $button){
+                                    echo "<div id='modal_menu_button_$button' class='item'>$button</div>";
+                                }                                                 
+                        echo "
+                            </div>
+                        </div>
+                        ";
+                        break;
+                    case 'Image':
+                        echo "
+                        <div id='dropdown' class='ui inverted floating dropdown button'>
+                            <div>Image</div>
+                            <div class='menu'>";
+                                foreach($modal_image_menu as $image){
+                                    echo "<div id='modal_menu_image_$image' class='item'>$image</div>";
+                                }                                                 
+                        echo "
+                            </div>
+                        </div>
+                        ";
+                        break;
+                    case 'Grid':
+                        echo "
+                        <div id='dropdown' class='ui inverted floating dropdown button'>
+                            <div>Grid</div>
+                            <div class='menu'>";
+                                foreach($modal_grid_menu as $grid){
+                                    echo "<div id='modal_menu_grid_$grid' class='item'>$grid</div>";
+                                }                                                 
+                        echo "
+                            </div>
+                        </div>
+                        ";
+                        break;
+                    case 'Form':
+                        echo "
+                        <div id='dropdown' class='ui inverted floating dropdown button'>
+                            <div>Form</div>
+                            <div class='menu'>";
+                                foreach($modal_form_menu as $form){
+                                    echo "<div id='modal_menu_form_$form' class='item'>$form</div>";
+                                }                                                 
+                        echo "
+                            </div>
+                        </div>
+                        ";
+                        break;
+                    default:
+                        echo "<div id='modal_menu_$button' class='ui inverted floating button'>
+                                $button 
+                            </div>";
+                        break;
+                }                                                                                     
+            } 
+            ?>
     </div>
     <br>
     <div class="ui center aligned container">
@@ -190,6 +190,7 @@
     </div>
     </div>
 </div>
+
 
 
 
