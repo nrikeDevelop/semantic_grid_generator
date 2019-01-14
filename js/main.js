@@ -20,47 +20,6 @@ insertTextAtCursor(editor, "SELECT AREA");
 $('.ui.accordion').accordion();
 
 $('.ui.dropdown').dropdown();
-
-
-
-/*
-$("#grid_parent,.row").sortable({
-    placeholder: 'slide-placeholder',
-    axis: "y",
-    revert: 150,
-    scroll: false,
-    scrollSpeed: 100,
-    start: function (e, ui) {
-        //AQUI CAMBIAR POR EL TA
-        placeholderHeight = ui.item.outerHeight();
-        ui.placeholder.height(placeholderHeight + 10);
-        $('<div class="slide-placeholder-animator" data-height="' + placeholderHeight + '"></div>').insertAfter(ui.placeholder);
-
-    },
-    change: function (event, ui) {
-
-        ui.placeholder.stop().height(0).animate({
-            height: ui.item.outerHeight() + 15
-        }, 300);
-
-        placeholderAnimatorHeight = parseInt($(".slide-placeholder-animator").attr("data-height"));
-
-        $(".slide-placeholder-animator").stop().height(placeholderAnimatorHeight + 15).animate({
-            height: 0
-        }, 300, function () {
-            $(this).remove();
-            placeholderHeight = ui.item.outerHeight();
-            $('<div class="slide-placeholder-animator" data-height="' + placeholderHeight + '"></div>').insertAfter(ui.placeholder);
-        });
-
-    },
-    stop: function (e, ui) {
-
-        $(".slide-placeholder-animator").remove();
-
-    },
-});
-*/
 /*
        $("#grid_parent").sortable({
    	
@@ -140,8 +99,43 @@ $("#bt_create").click(function () {
 
     //CREATE VAR ROW AND DEFINE LIKE SELECTOR
 
-    $('#grid_parent').sortable();
 
+    $("#grid_parent").sortable({
+        placeholder: 'slide-placeholder',
+        axis: "y",
+        revert: 150,
+        scroll: false,
+        scrollSpeed: 100,
+        start: function (e, ui) {
+            //AQUI CAMBIAR POR EL TA
+            placeholderHeight = ui.item.outerHeight();
+            ui.placeholder.height(placeholderHeight + 10);
+            $('<div class="slide-placeholder-animator" data-height="' + placeholderHeight + '"></div>').insertAfter(ui.placeholder);
+    
+        },
+        change: function (event, ui) {
+    
+            ui.placeholder.stop().height(0).animate({
+                height: ui.item.outerHeight() + 15
+            }, 300);
+    
+            placeholderAnimatorHeight = parseInt($(".slide-placeholder-animator").attr("data-height"));
+    
+            $(".slide-placeholder-animator").stop().height(placeholderAnimatorHeight + 15).animate({
+                height: 0
+            }, 300, function () {
+                $(this).remove();
+                placeholderHeight = ui.item.outerHeight();
+                $('<div class="slide-placeholder-animator" data-height="' + placeholderHeight + '"></div>').insertAfter(ui.placeholder);
+            });
+    
+        },
+        stop: function (e, ui) {
+    
+            $(".slide-placeholder-animator").remove();
+    
+        },
+    });
     //row drop style rowstyle
     var row = $(`<div id="row" class="row drop rowstyle"></div>`);
 
@@ -150,12 +144,19 @@ $("#bt_create").click(function () {
     var aux = "" ;
     for (i = 1; i <= num_dcontent; i++) {
         n_container++;
-        var container = `<div id="column" class="` + css_dcontent + ` wide column contenteditable"><div id="dcontent" class="ui segment drop contentstyle"> //CODE </div></div>`;
+        var container = `<div id="column" class="` + css_dcontent + ` wide column editable_content">
+                            <div id="dcontent" class="ui segment drop "> //CODE </div>
+                        </div>`;
         aux = aux + container;
     };
 
     row.append(aux);
-    row.appendTo('#grid_parent').sortable();
+
+
+    row.appendTo('#grid_parent').sortable({
+        axis: "x",
+        scroll:false,
+    });
 });
 
 //SELECT DCONTENT
@@ -183,7 +184,7 @@ $(document).on('click', '.row', function (e) {
 
 var selected_dcontent;
 is_selected_content = false;
-$(document).on('click', '.contenteditable', function (e) {
+$(document).on('click', '.editable_content', function (e) {
     e.stopPropagation();
 
     $('#modal_input_class').val(select_container_class);

@@ -47,13 +47,14 @@ body{
 
 }
 
-.contentstyle{
+.editable_content{
+    padding:5px;
     background-color:rgba(171, 177, 136,0);
 }
 
-.contentstyle:hover{
+.editable_content:hover{
     border-radius: 5px;
-    background-color:rgba(175, 175, 175, 0.582);
+    background-color:rgba(51, 104, 153, 0.336);
 }
 
 .editingstyle{
