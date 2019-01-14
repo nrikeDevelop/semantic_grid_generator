@@ -58,12 +58,7 @@
                 <label><i class="exchange inverted  alternate icon"></i></label>
             </div>
 
-            <button id="download" class="ui inverted button">Download code</button>
-
-
-            <button id="edit_button" class=" ui inverted button" style="margin:20px;">
-                <i class="icon settings"></i>Edit
-            </button>
+            <button id="download" class="ui inverted button" style="margin:20px;">Download code</button>
         </div>
     </div>
 </div>
@@ -328,11 +323,8 @@
     <script src="./js/lib/context_menu.js"></script>
     <script src="./js/lib/semantic_alert.js"></script>
     <script src="./js/lib/sortable.js"></script>
-
-
-
-    <script src="./node_modules/jszip/dist/jszip.min.js"></script>
-    <script src="./node_modules/file-saver/dist/FileSaver.js"></script>
+    <script src="./js/lib/jszip.min.js"></script>
+    <script src="./js/lib/FileSaver.js"></script>
 
     <script src="./js/main.js"></script>
     

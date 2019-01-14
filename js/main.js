@@ -18,7 +18,6 @@ insertTextAtCursor(editor, "SELECT AREA");
 
 //common semantic ui
 $('.ui.accordion').accordion();
-
 $('.ui.dropdown').dropdown();
 /*
        $("#grid_parent").sortable({
@@ -72,9 +71,10 @@ $("#fluid_checkbox").on('change', function () {
 
     }
 });
-
+var background_color; //download variable 
 $("#picker_color").on('change', function () {
     var color = $("#picker_color").val();
+    background_color = color;
     $("body").css("background-color", "#" + color);
 });
 
@@ -163,14 +163,14 @@ $("#bt_create").click(function () {
 
 var select_container;
 var select_container_class;
-$(document).on('click', '.column', function () {
+$(document).on('mousedown', '.column', function () {
     select_container = $(this);
     select_container_class = select_container.attr('class');
 });
 
 var selected_row;
 is_selected_row = false;
-$(document).on('click', '.row', function (e) {
+$(document).on('mousedown', '.row', function (e) {
     e.stopPropagation();
     selected_row = $(this);
 
@@ -184,7 +184,7 @@ $(document).on('click', '.row', function (e) {
 
 var selected_dcontent;
 is_selected_content = false;
-$(document).on('click', '.editable_content', function (e) {
+$(document).on('mousedown', '.editable_content', function (e) {
     e.stopPropagation();
 
     $('#modal_input_class').val(select_container_class);
@@ -371,10 +371,16 @@ $('#download').on('click', function () {
 
 //EDIT MENU
 
+
 $('#edit_button').click(function () {
     $("#toggle-menu").slideToggle("slow");
 });
 
+$(document).keyup(function(e) {
+    if (e.key === "Escape") { // escape key maps to keycode `27`
+    $("#toggle-menu").slideToggle("slow");
+   }
+});
 //CONTEXT_MENU
 
 //CONTEXT MENU 
@@ -395,6 +401,7 @@ function onContextMenu(e) {
     showMenu(e.pageX, e.pageY);
     document.addEventListener('mousedown', onMouseDown, false);
     //ACTION RIGHT CLICK
+    
 }
 
 var handler;
@@ -405,7 +412,6 @@ function onMouseDown(e) {
         document.removeEventListener('mousedown', onMouseDown);
     }, 100);
 }
-
 document.addEventListener('contextmenu', onContextMenu, false);
 
 
@@ -439,22 +445,3 @@ $('#delete_row_context_menu').click(function () {
 
 });
 
-
-
-/*
-$('#element').mousedown(function(event) {
-    switch (event.which) {
-        case 1:
-            alert('Left Mouse button pressed.');
-            break;
-        case 2:
-            alert('Middle Mouse button pressed.');
-            break;
-        case 3:
-            alert('Right Mouse button pressed.');
-            break;
-        default:
-            alert('You have a strange Mouse!');
-    }
-});
-*/

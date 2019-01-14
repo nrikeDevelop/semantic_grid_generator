@@ -25,7 +25,7 @@ var footer = `
 `;
 
 function createZip(code){
-	var html = head + code + footer;
+	var html = head + '<body style="background-color:'+background_color+'">' + code + '</body>'+ footer;
 	var zip = new JSZip();
     zip.file("index.html", html);
     zip.generateAsync({type:"blob"})
