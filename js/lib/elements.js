@@ -221,6 +221,42 @@ function get_login_or_button(){
     return response;
 }
 
+function get_navbar(){
+    var response = `
+    <div class="ui small menu">
+        <a class="active item">
+        Home
+        </a>
+        <a class="item">
+        Messages
+        </a>
+        <a class="item">
+        <i class="ui edit item"/>test
+        </a>
+        <div class="right menu">
+        <div class="item">
+            <div class="ui icon input">
+            <input type="text" placeholder="Search...">
+            <i class="search link icon"></i>
+            </div>
+        </div>
+        <div class="ui dropdown item">
+            Language <i class="dropdown icon"></i>
+            <div class="menu">
+                <a class="item">English</a>
+                <a class="item">Russian</a>
+                <a class="item">Spanish</a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ui primary button">Sign Up</div>
+        </div>
+        </div>
+    </div>
+    `
+    return response;
+
+}
 
 function get_accordion(){
     var response = `
@@ -233,7 +269,6 @@ function get_accordion(){
             <p class="transition hidden">A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
         </div>
     </div>
-
 
     <script>$('.ui.accordion').accordion();    </script>
     `; 

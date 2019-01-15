@@ -65,13 +65,14 @@
 
 
 <?php
-        $modal_html_menu = array("Segment","Container", "Button", "Image","Grid","Table", "Card", "Form");
+        $modal_html_menu = array("Segment","Container", "Button", "Image","Grid","Table", "Card", "Form","NavBar");
         $modal_container_menu = array("Left","Right","Center");
         $modal_button_menu = array("Basic","Primary","Secondary");
         $modal_image_menu = array("Small","Medium");
         $modal_grid_menu = array("2x1","2x2","3x1","3x2");
         $modal_form_menu = array("Form","Input","Checkbox","SimpleForm");
 ?>
+
 <div id="toggle-menu" class="toggle-menu" style="display:none" data-aos="fade-up">
     <div class="ui center aligned container">
             <?php foreach ($modal_html_menu as $button) {
@@ -158,22 +159,29 @@
             </div>
         </div>
     </div>
-<script>       $('.ui.accordion').accordion();</script>
 
-    <div class="editor_area">
+    <div class="editor_area" >
         <textarea  id="modal_input_html"></textarea>
     </div>
+    </div>
+
+
 </div>
 
 <!--CONTEXT MENU-->
 <div class="context_menu">
-    <div class="ui vertical menu">
-        <div id="edit_context_menu" class="item"><i class="edit icon"></i> Edit</div>
-        <div id="delete_container_context_menu" class="item"><i class="trash icon"></i>Delete container</div>
-        <div id="delete_row_context_menu" class="item"><i class="trash icon"></i>Delete row</div>
+    <div id="#menu_1">
+        <div class="ui vertical menu">
+            <div id="edit_context_menu" class="item"><i class="edit icon"></i> Edit</div>
+            <div id="delete_container_context_menu" class="item"><i class="trash icon"></i>Delete container</div>
+            <div id="delete_row_context_menu" class="item"><i class="trash icon"></i>Delete row</div>
+
+        </div>
     </div>
 </div>
-
+<div class="test_menu">
+dfasdf
+</div>
 <!--WEB CREATE-->
 
 <div id="content_code_download" class="grid-parent">

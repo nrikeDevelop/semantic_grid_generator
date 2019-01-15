@@ -55,8 +55,6 @@ window.addEventListener("scroll", function (event) {
 });
 */
 
-
-
 //END COMMON
 
 //START PAGE
@@ -303,6 +301,10 @@ $('#modal_menu_form_SimpleForm').on('click', function () {
     insertTextAtCursor(editor, get_login_or_button());
 });
 
+//FUNCTION NAV BAR
+$('#modal_menu_NavBar').on('click', function () {
+    insertTextAtCursor(editor, get_navbar());
+});
 
 
 //FUNCTIONS ACCORDING
@@ -383,6 +385,21 @@ $(document).keyup(function(e) {
 });
 //CONTEXT_MENU
 
+$("#toggle-menu").mousedown(function(e){
+		//1: izquierda, 2: medio/ruleta, 3: derecho
+    if(e.which == 3) {
+        //alert("derecho sobre menu")
+    }
+});
+
+$('#content_code_download').mousedown(function(e){
+    //1: izquierda, 2: medio/ruleta, 3: derecho
+    if(e.which == 3) {
+        //alert("derecho sobre menu")
+    }
+});
+
+
 //CONTEXT MENU 
 var menu = document.querySelector('.context_menu');
 
@@ -395,7 +412,7 @@ function showMenu(x, y) {
 function hideMenu() {
     menu.classList.remove('menu-show');
 }
-
+var handler;
 function onContextMenu(e) {
     e.preventDefault();
     showMenu(e.pageX, e.pageY);
@@ -404,8 +421,8 @@ function onContextMenu(e) {
     
 }
 
-var handler;
-function onMouseDown(e) {
+
+function onMouseDown() {
     clearTimeout(handler);
     handler = setTimeout(function () {
         hideMenu();
