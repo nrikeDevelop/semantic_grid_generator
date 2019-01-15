@@ -141,6 +141,7 @@ function get_grid_3x1(){
         </div>
     </div>
     `
+    
     return response;
 }
 

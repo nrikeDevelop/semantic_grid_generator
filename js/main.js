@@ -135,22 +135,20 @@ $("#bt_create").click(function () {
         },
     });
     //row drop style rowstyle
-    var row = $(`<div id="row" class="row drop rowstyle"></div>`);
+    var row = $(`<div  class="row drop rowstyle"></div>`);
 
     //CREATE AUX TO CONCATENATE CONTAINERS 
     var i;
     var aux = "" ;
     for (i = 1; i <= num_dcontent; i++) {
         n_container++;
-        var container = `<div id="column" class="` + css_dcontent + ` wide column editable_content">
-                            <div id="dcontent" class="ui segment drop "> //CODE </div>
+        var container = `<div class="` + css_dcontent + ` wide column editable_content">
+                            <div  class="ui segment drop "> //CODE </div>
                         </div>`;
         aux = aux + container;
     };
 
     row.append(aux);
-
-
     row.appendTo('#grid_parent').sortable({
         axis: "x",
         scroll:false,
