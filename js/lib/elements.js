@@ -103,7 +103,7 @@ function get_grid_2x1(){
 
 function get_grid_2x2(){
     var response = `
-    <div class="ui stackable grid">
+    <div class="ui stackable grid ">
         <div class = "row">
             <div class="eight wide column">
                 //ELEMENT
