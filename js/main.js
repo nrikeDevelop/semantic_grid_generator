@@ -1,5 +1,21 @@
-//http://www.tutorialspark.com/jqueryUI/jQuery_UI_Sortable_Methods_adding_new_Sortable_refresh.php
 //COMMON 
+
+var delay;//use in code
+
+panel_open = true;
+function edit_panel() {
+    if (panel_open) {
+        delay = setTimeout(function () {
+            $('#edit_context_menu').html('<i class="edit icon"></i> Close panel')
+        }, 100);
+        panel_open = false;
+    } else {
+        delay = setTimeout(function () {
+            $('#edit_context_menu').html('<i class="edit icon"></i> Open panel');
+        }, 100);
+        panel_open = true;
+    }
+}
 
 
 editor = $("#modal_input_html").codemirror({
@@ -16,46 +32,21 @@ editor = $("#modal_input_html").codemirror({
 editor.setValue("");
 insertTextAtCursor(editor, "SELECT AREA");
 
+//refresh page 
+$(function () {
+    startRefresh();
+});
+
+function startRefresh() {
+    setTimeout(startRefresh, 3000);
+    is_selected_content = false //safetly drop content
+    is_selected_row = false     //safetly drop row
+    console.log("refresco");
+}
+
 //common semantic ui
 $('.ui.accordion').accordion();
 $('.ui.dropdown').dropdown();
-/*
-       $("#grid_parent").sortable({
-   	
-           axis: "y",
-           revert: true,
-           scroll: false,
-           placeholder: "sortable-placeholder",
-           cursor: "move"
-   
-           });
-
-         */
-
-/*
-$active_scroll = false;
-window.addEventListener("scroll", function (event) {
-    var scroll = this.scrollY;
-    if ( scroll > 283){
-        //menu
-        $('#top-menu').removeClass('top-menu');
-        $('#top-menu').addClass('top-menu-fixed');
-        //toggle -menu
-        //$('#toggle-menu').attr('style', 'display:none;position: fixed;bottom: 0;z-index: 3;');
-        $('#toggle-menu').removeClass('toggle-menu');
-        $('#toggle-menu').addClass('toggle-menu-fixed');
-    }else{
-        $('#top-menu').removeClass('top-menu-fixed');
-        $('#top-menu').addClass('top-menu');
-
-        $('#toggle-menu').removeClass('toggle-menu-fixed');
-        $('#toggle-menu').addClass('toggle-menu');
-    }
-    console.log(scroll)
-});
-*/
-
-
 
 //END COMMON
 
@@ -111,16 +102,16 @@ $("#bt_create").click(function () {
             placeholderHeight = ui.item.outerHeight();
             ui.placeholder.height(placeholderHeight + 10);
             $('<div class="slide-placeholder-animator" data-height="' + placeholderHeight + '"></div>').insertAfter(ui.placeholder);
-    
+
         },
         change: function (event, ui) {
-    
+
             ui.placeholder.stop().height(0).animate({
                 height: ui.item.outerHeight() + 15
             }, 300);
-    
+
             placeholderAnimatorHeight = parseInt($(".slide-placeholder-animator").attr("data-height"));
-    
+
             $(".slide-placeholder-animator").stop().height(placeholderAnimatorHeight + 15).animate({
                 height: 0
             }, 300, function () {
@@ -128,12 +119,12 @@ $("#bt_create").click(function () {
                 placeholderHeight = ui.item.outerHeight();
                 $('<div class="slide-placeholder-animator" data-height="' + placeholderHeight + '"></div>').insertAfter(ui.placeholder);
             });
-    
+
         },
         stop: function (e, ui) {
-    
+
             $(".slide-placeholder-animator").remove();
-    
+
         },
     });
     //row drop style rowstyle
@@ -141,7 +132,7 @@ $("#bt_create").click(function () {
 
     //CREATE AUX TO CONCATENATE CONTAINERS 
     var i;
-    var aux = "" ;
+    var aux = "";
     for (i = 1; i <= num_dcontent; i++) {
         n_container++;
         var container = `<div class="` + css_dcontent + ` wide column editable_content">
@@ -155,11 +146,12 @@ $("#bt_create").click(function () {
 
     row.appendTo('#grid_parent').sortable({
         axis: "x",
-        scroll:false,
+        scroll: false,
     });
 });
 
 //SELECT DCONTENT
+
 
 var select_container;
 var select_container_class;
@@ -167,6 +159,7 @@ $(document).on('mousedown', '.column', function () {
     select_container = $(this);
     select_container_class = select_container.attr('class');
 });
+
 
 var selected_row;
 is_selected_row = false;
@@ -177,9 +170,6 @@ $(document).on('mousedown', '.selectable', function (e) {
     select_container = selected_row;
     succesAlert('Row', 'Row selected')
     is_selected_row = true;
-
-    ///$('#edit_modal').modal('show');
-    //$( ".toggle-menu" ).slideToggle( "slow" );
 });
 
 var selected_dcontent;
@@ -214,7 +204,12 @@ $('#modal_input_html').on('mouseup keydown', function (e) {
     cursor_html = $('#modal_input_html').caret('pos');
 });
 
-//FUNCTIONS MENU
+
+//FUNCTIONS SEGMENT
+$('#modal_menu_Navbar').on('click', function () {
+    insertTextAtCursor(editor, get_navbar());
+});
+//FUNCTIONS SEGMENT
 $('#modal_menu_Segment').on('click', function () {
     insertTextAtCursor(editor, get_segment());
 });
@@ -337,11 +332,9 @@ $('#modal_input_class').on('change', function () {
     }
 });
 
-
-var wto;
 editor.on('change', function (cMirror) {
-    clearTimeout(wto);
-    wto = setTimeout(function () {
+    clearTimeout(delay);
+    delay = setTimeout(function () {
         var get_html = editor.getValue();
         if (get_html != "") {
             select_container.empty();
@@ -371,15 +364,11 @@ $('#download').on('click', function () {
 
 //EDIT MENU
 
-
-$('#edit_button').click(function () {
-    $("#toggle-menu").slideToggle("slow");
-});
-
-$(document).keyup(function(e) {
+$(document).keyup(function (e) {
     if (e.key === "Escape") { // escape key maps to keycode `27`
-    $("#toggle-menu").slideToggle("slow");
-   }
+        $("#toggle-menu").slideToggle("slow");
+        edit_panel();
+    }
 });
 //CONTEXT_MENU
 
@@ -401,7 +390,7 @@ function onContextMenu(e) {
     showMenu(e.pageX, e.pageY);
     document.addEventListener('mousedown', onMouseDown, false);
     //ACTION RIGHT CLICK
-    
+
 }
 
 var handler;
@@ -416,6 +405,8 @@ document.addEventListener('contextmenu', onContextMenu, false);
 
 
 $('#edit_context_menu').click(function () {
+    edit_panel();
+
     $("#toggle-menu").slideToggle("slow");
 });
 

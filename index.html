@@ -38,47 +38,40 @@
 
 <body>
 
-    <div id="top-menu" class="top-menu">
-        <div class="toggle-menu-nav">
-            <div class="ui fluid center aligned container">
-                <div class="ui labeled input">
-                    <div class="ui label">
-                        Columns
-                    </div>
-                    <input id="input" type="number" placeholder="nº columns">
+    <div id="toggle-menu" class="toggle-menu" style="display:none" data-aos="fade-up">
+        <div class="ui secondary inverted menu">
+            <div class="right menu">
+                <div class="ui toggle checkbox" style="margin-right: 20px;">
+                    <input id="fluid_checkbox" type="checkbox" name="public">
+                    <label><i class="exchange inverted  alternate icon"></i></label>
                 </div>
-                <button id="bt_create" class="ui inverted button">Add row</button>
-                <div class="ui labeled input" style="margin-left:50px;">
+                <div class="ui labeled input" style="margin-left:50px;margin-right:50px;">
                     <div class="ui label">
                         Color
                     </div>
                     <input id="picker_color" name="jscolor" class="jscolor" value="D8DDFF">
                 </div>
-                <div class="ui toggle checkbox" style="margin-left: 20px;">
-                    <input id="fluid_checkbox" type="checkbox" name="public">
-                    <label><i class="exchange inverted  alternate icon"></i></label>
+                <div class="ui labeled input">
+                    <div class="ui label">
+                        Columns
+                    </div>
+                    <input id="input" type="number" placeholder="nº columns" style="margin-right: 10px;">
                 </div>
-
-                <button id="download" class="ui inverted button" style="margin:20px;">Download code</button>
+                <a id="bt_create" class="ui item"><i class="plus icon"></i>Add row</a>
+                <a id="download" class="ui item">
+                    Download code<i class="download icon"></i>
+                </a>
+                <a class="ui item" style="margin-right:50px;">
+                    Copy<i class="copy icon"></i>
+                </a>
             </div>
         </div>
-    </div>
-
-    <div id="toggle-menu" class="toggle-menu" style="display:none" data-aos="fade-up">
-
-<!--    CLASSE
-    <div class="ui center aligned container">
-        <div class="ui form">
-            <div class="field">
-                <input id="modal_input_class" type="text" style="width:400px;" placeholder="Class">
-            </div>
-        </div>
-    </div>
--->
-
         <div>
             <div class="toggle-menu-code">
                 <div class="ui secondary inverted vertical menu">
+                    <a id="modal_menu_Navbar" class="item">
+                        NavBar
+                    </a>
                     <a id="modal_menu_Segment" class="item">
                         Segment
                     </a>
@@ -132,8 +125,15 @@
             </div>
             <div class="toggle-menu-editor">
                 <textarea id="modal_input_html"></textarea>
+
+                <div class="ui input" style="width:300px;margin-bottom:15px;margin-top:10px;">
+                    <input id="modal_input_class" type="text" placeholder="Class">
+                </div>
+                fdsdf
             </div>
+
         </div>
+    </div>
     </div>
 
 
@@ -141,7 +141,7 @@
     <!--CONTEXT MENU-->
     <div class="context_menu">
         <div class="ui vertical menu">
-            <div id="edit_context_menu" class="item"><i class="edit icon"></i> Edit</div>
+            <div id="edit_context_menu" class="item"><i class="edit icon"></i> Open panel</div>
             <div id="delete_container_context_menu" class="item"><i class="trash icon"></i>Delete container</div>
             <div id="delete_row_context_menu" class="item"><i class="trash icon"></i>Delete row</div>
         </div>
@@ -158,11 +158,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
 
 </body>
 <footer>
