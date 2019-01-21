@@ -6,6 +6,9 @@
     <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
     <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
     <!-- SEMANTIC UI -->
     <link rel="stylesheet" type="text/css" href="./semantic/dist/semantic.min.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -40,6 +43,20 @@
 
     <div id="toggle-menu" class="toggle-menu" style="display:none" data-aos="fade-up">
         <div class="ui secondary inverted menu">
+            <div class="left menu">
+                <div class="ui action input">
+                    <input id="filename_text" type="text" placeholder="Project Name">
+                    <button id="save_project" class="ui button">Save</button>
+                </div>
+                <div class="ui dropdown icon item">
+                    Select project
+                    <div class="menu">
+                        <?php
+                        $projects = scandir("./projects/");
+                        for($i=2;$i< sizeof($projects);$i++){?><div id="<?php $projects[$i] ?>" class="item open_file"><i class="folder open icon"></i><?php echo $projects[$i] ?></div><?php }?>
+                    </div>
+                </div>
+            </div>
             <div class="right menu">
                 <div class="ui toggle checkbox" style="margin-right: 20px;">
                     <input id="fluid_checkbox" type="checkbox" name="public">
@@ -176,6 +193,60 @@
     <script src="./js/main.js"></script>
 
     <script>
+
+        $(".open_file").on('click',function(){
+            var file = $(this).text();
+
+            console.log(">>  "+file);
+            $.ajax({
+                    // En data puedes utilizar un objeto JSON, un array o un query string
+                    data: {
+                        "action": "read_file",
+                        "filename": file,
+                    },
+                    type: "POST",
+                    dataType: "json",
+                    url: "./saver.php",
+                }).done(function (data, textStatus, jqXHR) {
+                    if (data['success']) {
+                        succesAlert('Success', data['message'])
+                        $(data['code']).appendTo('#grid_parent')
+                    }
+                    if (!data['success']) {
+                        errorAlert('Error', data['message'])
+                    }
+                })
+        })
+
+        $('#save_project').on('click', function () {
+
+            if (!!$('#filename_text').val()) {
+                var code = $('#content_code_download').html();
+                $.ajax({
+                    // En data puedes utilizar un objeto JSON, un array o un query string
+                    data: {
+                        "action": "write_file",
+                        "filename": $('#filename_text').val(),
+                        "code": code
+                    },
+                    type: "POST",
+                    dataType: "json",
+                    url: "./saver.php",
+                }).done(function (data, textStatus, jqXHR) {
+                    if (data['success']) {
+                        succesAlert('Success', data['message'])
+                    }
+                    if (!data['success']) {
+                        errorAlert('Error', data['message'])
+                    }
+                })
+            } else {
+                warningAlert('Enter filename', 'To save needs filename ')
+            }
+        });
+
+
+
         AOS.init();
 
     </script>
