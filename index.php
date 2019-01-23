@@ -1,4 +1,4 @@
-<html>
+ <html>
 
 <head>
     <meta charset="UTF-8">
@@ -41,9 +41,17 @@
 
 <body>
 
+    <div class="click_container" >
+        <div class="click">
+            <h1>Left click</h1>
+            <img src="./style/images/clicking.png">
+        </div>
+    </div>
+
     <div id="toggle-menu" class="toggle-menu" style="display:none" data-aos="fade-up">
         <div class="ui secondary inverted menu">
             <div class="left menu">
+<!--MAKING
                 <div class="ui action input">
                     <input id="filename_text" type="text" placeholder="Project Name">
                     <button id="save_project" class="ui button">Save</button>
@@ -53,12 +61,17 @@
                     <div class="menu">
                         <?php
                         $projects = scandir("./projects/");
-                        for($i=2;$i< sizeof($projects);$i++){?><div id="<?php $projects[$i] ?>" class="item open_file"><i class="folder open icon"></i><?php echo $projects[$i] ?></div><?php }?>
+                        for($i=2;$i< sizeof($projects);$i++){?>
+                        <div id="<?php $projects[$i] ?>" class="item open_file"><i class="folder open icon"></i>
+                            <?php echo $projects[$i] ?>
+                        </div>
+                        <?php }?>
                     </div>
                 </div>
+!-->
             </div>
             <div class="right menu">
-                <div class="ui toggle checkbox" style="margin-right: 20px;">
+                <div class="ui toggle checkbox" style="margin-right: 20px; padding-top:10px">
                     <input id="fluid_checkbox" type="checkbox" name="public">
                     <label><i class="exchange inverted  alternate icon"></i></label>
                 </div>
@@ -75,12 +88,10 @@
                     <input id="input" type="number" placeholder="nº columns" style="margin-right: 10px;">
                 </div>
                 <a id="bt_create" class="ui item"><i class="plus icon"></i>Add row</a>
-                <a id="download" class="ui item">
-                    Download code<i class="download icon"></i>
+                <a id="download" class="ui item" style="margin-right:50px;">
+                    Download code<i class="download icon" ></i>
                 </a>
-                <a class="ui item" style="margin-right:50px;">
-                    Copy<i class="copy icon"></i>
-                </a>
+
             </div>
         </div>
         <div>
@@ -194,28 +205,28 @@
 
     <script>
 
-        $(".open_file").on('click',function(){
+        $(".open_file").on('click', function () {
             var file = $(this).text();
 
-            console.log(">>  "+file);
+            console.log(">>  " + file);
             $.ajax({
-                    // En data puedes utilizar un objeto JSON, un array o un query string
-                    data: {
-                        "action": "read_file",
-                        "filename": file,
-                    },
-                    type: "POST",
-                    dataType: "json",
-                    url: "./saver.php",
-                }).done(function (data, textStatus, jqXHR) {
-                    if (data['success']) {
-                        succesAlert('Success', data['message'])
-                        $(data['code']).appendTo('#grid_parent')
-                    }
-                    if (!data['success']) {
-                        errorAlert('Error', data['message'])
-                    }
-                })
+                // En data puedes utilizar un objeto JSON, un array o un query string
+                data: {
+                    "action": "read_file",
+                    "filename": file,
+                },
+                type: "POST",
+                dataType: "json",
+                url: "./saver.php",
+            }).done(function (data, textStatus, jqXHR) {
+                if (data['success']) {
+                    succesAlert('Success', data['message'])
+                    $(data['code']).appendTo('#grid_parent')
+                }
+                if (!data['success']) {
+                    errorAlert('Error', data['message'])
+                }
+            })
         })
 
         $('#save_project').on('click', function () {

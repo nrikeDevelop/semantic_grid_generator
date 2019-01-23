@@ -28,6 +28,22 @@ body{
     background-color:#F1F1F1;    
 }
 
+/*HEADDER*/
+.click_container {
+    
+    height: 100%;
+    /*IMPORTANTE*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+  .click  {
+    width: auto;
+    height: auto;
+    opacity: 0.150;
+  }
+
 .rowstyle{
     background-color:#E2E8C0;
     margin:5px;     
