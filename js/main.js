@@ -5,6 +5,9 @@ var delay;//use in code
 panel_open = true;
 function edit_panel() {
     if (panel_open) {
+
+        $(".presentation_container").remove();
+
         $('.click_container').remove();
         delay = setTimeout(function () {
             $('#edit_context_menu').html('<i class="edit icon"></i> Close panel')

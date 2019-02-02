@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="UTF-8">
-
+    <title>Semantic ui Generatir</title>
     <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
     <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 
@@ -36,14 +36,23 @@
     <link rel="stylesheet" type="text/css" href="./style/semantic_alert.css">
     <link rel="stylesheet" type="text/css" href="./style/context_menu.css">
 
-
 </head>
 
 <body>
 
+<div class="presentation_container ">
+        <div class="ui center aligned container" style="padding-top:200px;">
+        <img src="img/logo_semantic.png">
+        <h1 style="color:white">Semantic ui generator</h1>
+        <i style=" padding-top:80px; color:white" class="huge angle double down icon"></i>
+
+</div>
+
+</div>
+
     <div class="click_container" >
         <div class="click">
-            <h1>Left click</h1>
+            <h1>Right click</h1>
             <img src="./style/images/clicking.png">
         </div>
     </div>
@@ -51,24 +60,7 @@
     <div id="toggle-menu" class="toggle-menu" style="display:none" data-aos="fade-up">
         <div class="ui secondary inverted menu">
             <div class="left menu">
-<!--MAKING
-                <div class="ui action input">
-                    <input id="filename_text" type="text" placeholder="Project Name">
-                    <button id="save_project" class="ui button">Save</button>
-                </div>
-                <div class="ui dropdown icon item">
-                    Select project
-                    <div class="menu">
-                        <?php
-                        $projects = scandir("./projects/");
-                        for($i=2;$i< sizeof($projects);$i++){?>
-                        <div id="<?php $projects[$i] ?>" class="item open_file"><i class="folder open icon"></i>
-                            <?php echo $projects[$i] ?>
-                        </div>
-                        <?php }?>
-                    </div>
-                </div>
-!-->
+
             </div>
             <div class="right menu">
                 <div class="ui toggle checkbox" style="margin-right: 20px; padding-top:10px">
